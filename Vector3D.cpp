@@ -1,4 +1,4 @@
-#include"Vector3D.h"
+#include "Vector3D.h"
 
 Vector3D::Vector3D(float x3, float y3, float z3) {
 	x = x3;
@@ -15,9 +15,9 @@ float Vector3D::operator*(Vector3D op) {
 }
 
 void Vector3D::Pvect(Vector3D a, Vector3D b) {
-	this->x = a.y*b.z-a.z*b.y;
-	this->y =a.z*b.x*a.x*b.z ;
-	this->z = a.x*b.y-a.y*b.x;
+	this->x = a.y * b.z - a.z * b.y;
+	this->y = a.z * b.x * a.x * b.z;
+	this->z = a.x * b.y - a.y * b.x;
 }
 
 Vector3D Vector3D::operator*(float a) {
@@ -45,7 +45,7 @@ Vector3D Vector3D::operator-(Vector3D o) {
 }
 Vector3D Vector3D::unitario() {
 	Vector3D un;
-	float dom= un.modulo();
+	float dom = un.modulo();
 	if (dom > 0.0001f) {
 		un.x /= dom;
 		un.y /= dom;

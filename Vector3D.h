@@ -1,8 +1,9 @@
 #pragma once
 #include<math.h>
-class Vector3D {
+class Vector3D
+{
 public:
-	Vector3D(float x3 = 0, float y3 = 0,float z3=0);
+	Vector3D(float x3 = 0, float y3 = 0, float z3 = 0);
 	virtual ~Vector3D();
 	//Mñetodos
 	void set(float, float, float);
@@ -19,3 +20,4 @@ public:
 	float z;
 	//Agregar operaciones
 };
+
