@@ -33,7 +33,7 @@ void Mundo::inicializa()
 	hombre.SetColor(255, 0, 0);
 	hombre.SetPos(0, hombre.GetAltura());
 	plataforma.SetPos(-5.0f, 9.0f, 5.0f, 9.0f);
-	//Problema: no se está dibujando en la posición correcta
+	//Problema: no se estÃ¡ dibujando en la posiciÃ³n correcta
 	bonusBolaFuego* bF1 = new bonusBolaFuego(5.0f,0.0f);
 	//bF1->SetPos(5.0f, 0.0f);
 	std::cout << "Bola de Fuego "<<bF1->GetPos().x << " " << bF1->GetPos().y << std::endl;
@@ -128,7 +128,7 @@ void Mundo::mueve()
 	/*disparogrande.mueve(0.025f);
 	esferas.mueve(0.025f);
 	esferaspulsantes.mueve(0.025f);*/
-	//esferas.rebote(); // rebote de las esferas entre sí
+	//esferas.rebote(); // rebote de las esferas entre sÃ­
 	//esferas.rebote(caja); // rebote de las esferas con la caja
 	//esferas.rebote(plataforma); // rebote con la plataforma
 
@@ -210,13 +210,13 @@ void Mundo::teclaEspecial(unsigned char key)
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
-		hombre.SetVel(-5.0f, 0.0f);
+		hombre.SetVel(-5.0f, hombre.GetVel().y);
 		break;
 	case GLUT_KEY_RIGHT:
-		hombre.SetVel(5.0f, 0.0f);
+		hombre.SetVel(5.0f, hombre.GetVel().y);
 		break;
 	case GLUT_KEY_UP:
-		hombre.SetVel(0.0f,10.0f);
+		hombre.SetVel(hombre.GetVel().x,10.0f);
 		hombre.SetAcel(0.0f, -9.81f);
 		break;
 	}
@@ -224,15 +224,5 @@ void Mundo::teclaEspecial(unsigned char key)
 
 void Mundo::teclaEspecialUp(unsigned char key)
 {
-	switch (key)
-	{
-	case GLUT_KEY_LEFT:
-		hombre.SetVel(0.0f, 0.0f);
-		break;
-	case GLUT_KEY_RIGHT:
-		hombre.SetVel(0.0f, 0.0f);
-		break;
-
-	
-	}
+	Mundo::teclaEspecial(key);
 }
