@@ -52,6 +52,7 @@ public:
 	void setHombrePosicion(float x, float y) { personaje->SetPos(0, 0); }
 	vector2D getHombrePosicion() { return personaje->GetPos(); }
 	bool CargarNivel();
+	void destruirMapa() ;
 
 private:
 	Vector3D ojo;
