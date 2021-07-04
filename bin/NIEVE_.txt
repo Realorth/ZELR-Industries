@@ -1,0 +1,11 @@
+height
+5
+length
+60
+map
+------------------------------------------------------------/
+-----------ppp--a-pppp------------md-pppp-----pppp----------/
+------a--pp---ppp----ppp---mm-----pp--------p------pp-------/
+------pp---pp-----pp------ppp-d-p---pp---pp-----ppp---pp----/
+--m--p---p----cd-p-mmm--p-c---p----p----a--p--p-----p--mmmm-/
+sssss-ss--s--ssss--ssss--sss---sssss--sssss----ss--sssssssss/
