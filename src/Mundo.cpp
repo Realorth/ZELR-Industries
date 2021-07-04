@@ -4,7 +4,6 @@
 #include "Interaccion.h"
 #include "vector2D.h"
 #include <iostream>
-#include "esfera.h"
 #include <fstream>
 Mundo::Mundo()
 {
@@ -23,21 +22,7 @@ Mundo:: ~ Mundo()
 	Suelos.destruirContenido();
 }
 
-void Mundo::setMapa(int l)
-{
-	tipo a = static_cast<tipo>(l);
-	//opcion 1
-	ptipo = a;
 
-	//opcion2
-	/*if (l == 0)
-		ptipo = CEMENTERIO;
-	if (l == 1)
-		ptipo =  NIEVE;
-	if (l == 2)
-		ptipo = BASICO;*/
-
-}
 void Mundo::inicializa()
 {
 	x_ojo = 0;
@@ -45,17 +30,15 @@ void Mundo::inicializa()
 	z_ojo = 30;
 	ojo.set(0, 7.5, 30);
 
-	hombre.SetAltura(1.8f);
-	hombre.SetColor(255, 0, 0);
-	hombre.SetPos(0, 1.0);
-	//hombre.SetVel(0, -5.0f);
-	//hombre.SetAcel(0, -5.0f);
-	hombre.Setvida(5);
-	hombre.Setataque(1);
+	personaje = new Pistolero();
+	personaje->SetAltura(1.8f);
+	personaje->SetPos(0, personaje->GetAltura());
+	personaje->SetAcel(0, -9.81);
+	personaje->Setvida(5);
+	personaje->Setataque(1);
 
 	fin = false;
-	ncoin = 0;//Reestablecer a 0 cada vez que se inicializa el mapa
-	
+	ncoin = 0; //Reestablecer a 0 cada vez que se inicializa el mapa
 	bonusBolaFuego* bF1 = new bonusBolaFuego;
 	bF1->SetPos(5.0f, 1.0f);
 	std::cout << bF1->GetPos().x << " " << bF1->GetPos().y << std::endl;
@@ -85,9 +68,9 @@ void Mundo::inicializa()
 		listaCoins.agregar(aux);
 	}*/
 
-	llave.SetPos(10, 2);
+	
 	Genera();
-
+	llave.SetPos(10, 2);
 
 
 }
@@ -97,12 +80,14 @@ void Mundo::dibuja()
 		x_ojo, 7.5, 0,      // hacia que punto mira  (0,0,0) 
 			0.0, 1.0, 0.0);      // definimos hacia arriba (eje Y)    
 	
-	hombre.dibuja();
+	personaje->dibuja();
 	disparos.dibuja();
 	Suelos.dibuja();
 	Fondo.dibuja();
 	Plataformas.dibuja();
 	llave.dibuja();
+
+
 
 	listaCoins.dibuja();
 	listaArmaduras.dibuja();
@@ -112,70 +97,68 @@ void Mundo::dibuja()
 	//Cantidad de vidas
 	ETSIDI::setTextColor(1, 0, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string vidaHombre = std::to_string(hombre.Getvida());
-	ETSIDI::printxy("Vidas", -13 + hombre.GetPos().x, 17);
-	ETSIDI::printxy(vidaHombre.c_str(), -11 + hombre.GetPos().x, 17);
+	std::string vidaHombre = std::to_string(personaje->Getvida());
+	ETSIDI::printxy("Vidas", -13 + personaje->GetPos().x, 17);
+	ETSIDI::printxy(vidaHombre.c_str(), -11 + personaje->GetPos().x, 17);
 
 	//Cantidad de armaduras
 	ETSIDI::setTextColor(0.5, 0.5, 0.5);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string armHombre = std::to_string(hombre.GetArmadura());
-	ETSIDI::printxy("Armaduras", -1 + hombre.GetPos().x, 17);
-	ETSIDI::printxy(armHombre.c_str(), 2 + hombre.GetPos().x, 17);
+	std::string armHombre = std::to_string(personaje->GetArmadura());
+	ETSIDI::printxy("Armaduras", -1 + personaje->GetPos().x, 17);
+	ETSIDI::printxy(armHombre.c_str(), 2 + personaje->GetPos().x, 17);
 
 	//Cantidad de monedas
 	ETSIDI::setTextColor(1, 1, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
 	std::string s = std::to_string(ncoin);
-	ETSIDI::printxy("Monedas", -9 + hombre.GetPos().x, 17);
-	ETSIDI::printxy(s.c_str(), -6 + hombre.GetPos().x, 17);
+	ETSIDI::printxy("Monedas", -9 + personaje->GetPos().x, 17);
+	ETSIDI::printxy(s.c_str(), -6 + personaje->GetPos().x, 17);
 
 	//Ataque a enemigos
 	ETSIDI::setTextColor(1, 1, 1);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string ataqueHombre = std::to_string(hombre.GetAtaque());
-	ETSIDI::printxy("Ataque", -5+hombre.GetPos().x, 17);
-	ETSIDI::printxy(ataqueHombre.c_str(), -3 + hombre.GetPos().x, 17);
+	std::string ataqueHombre = std::to_string(personaje->GetAtaque());
+	ETSIDI::printxy("Ataque", -5+personaje->GetPos().x, 17);
+	ETSIDI::printxy(ataqueHombre.c_str(), -3 + personaje->GetPos().x, 17);
 }
 
 void Mundo::mueve()
 {
 	disparos.mueve(0.015f);
-	hombre.mueve(0.025f);
-	if (Interaccion::colision(hombre, llave)) {
-		fin = true;
-	}
+	personaje->mueve(0.025f);
 
-	BonusArmadura* auxA = listaArmaduras.colision(hombre);
+
+	BonusArmadura* auxA = listaArmaduras.colision(*personaje);
 	if (auxA != 0) {
-		hombre.AumentaArmadura();
+		personaje->AumentaArmadura();
 		ETSIDI::play("sonidos/Bonus.wav");
 		listaArmaduras.eliminar(auxA);
 	}
 
-	BonusCorazon* auxC = listaCorazones.colision(hombre);
+	BonusCorazon* auxC = listaCorazones.colision(*personaje);
 	if (auxC != 0) {
-		hombre.AumentaVida();
+		personaje->AumentaVida();
 		ETSIDI::play("sonidos/Bonus.wav");
 		listaCorazones.eliminar(auxC);
 		impacto = true;
 	}
 
-	bonusBolaFuego* auxB = listaBFuego.colision(hombre);
+	bonusBolaFuego* auxB = listaBFuego.colision(*personaje);
 	if (auxB != 0) {
-		hombre.AumentaAtaque();
+		personaje->AumentaAtaque();
 		ETSIDI::play("sonidos/Bonus.wav");
 		listaBFuego.eliminar(auxB);
 	}
 
-	coin* auxc = listaCoins.colision(hombre);
+	coin* auxc = listaCoins.colision(*personaje);
 	if (auxc != 0) {
 		ETSIDI::play("sonidos/coin.wav");
 		ncoin += 1;
 		//std::cout << ncoin << "y" << pcoin << std::endl;
 		listaCoins.eliminar(auxc);
 	}
-	if (Interaccion::muertecaida(hombre) ==true )
+	if (Interaccion::muertecaida(*personaje) ==true )
 		caida = true;
 
 
@@ -184,13 +167,13 @@ void Mundo::mueve()
 			disparos.eliminar(disparos[i]);
 		}
 	}
-	x_ojo = hombre.GetPos().x;
+	x_ojo = personaje->GetPos().x;
 
 
 	/*Interaccion::rebote(hombre, mapa.GetPlataforma());
 	Interaccion::rebote(hombre,mapa.GetSuelo() );*/
-	Interaccion::rebote(hombre, Suelos.getSuelo());
-	Interaccion::rebote(hombre, Plataformas.getPlataforma());
+	Interaccion::rebote(*personaje, Suelos.getSuelo());
+	Interaccion::rebote(*personaje, Plataformas.getPlataforma());
 
 	
 
@@ -200,15 +183,15 @@ void Mundo::mueve()
 
 void Mundo::tecla(unsigned char key)
 {
-	hombre.tecla(key);
+	//hombre.tecla(key);
 
 	switch (key)
 	{
-	/*case 'd':
-		hombre.SetVel(hombre.GetVel().x + 5, hombre.GetVel().y);
+	case 'd':
+		personaje->SetVel(personaje->GetVel().x + 5, personaje->GetVel().y);
 		break;
 	case 'a':
-		hombre.SetVel(hombre.GetVel().x - 5, hombre.GetVel().y);
+		personaje->SetVel(personaje->GetVel().x - 5, personaje->GetVel().y);
 		break;
 	case'w' :
 		z_ojo += 1.0f;
@@ -221,17 +204,17 @@ void Mundo::tecla(unsigned char key)
 		break;
 	case 'x':
 		y_ojo -= 1.0f;
-		break;*/
+		break;
 	case ' ':
 	{
 		disparo* d = new disparo();
-		vector2D pos = hombre.GetPos();
+		vector2D pos = personaje->GetPos();
 		d->SetPos(pos.x, pos.y);
 		d->SetOrigen(pos.x, pos.y);
 		if (disparos.agregar(d))
 		{
  			ETSIDI::play("sonidos/pistola.wav");
-            hombre.SetVel(0, 0);
+            personaje->SetVel(0, 0);
 		}
 			
 		else delete d;
@@ -247,23 +230,26 @@ void Mundo::teclaEspecial(unsigned char key)
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
-		hombre.SetVel(-5.0f, hombre.GetVel().y);
+		personaje->SetVel(-5.0f, personaje->GetVel().y);
 		break;
 	case GLUT_KEY_RIGHT:
-		hombre.SetVel(5.0f, hombre.GetVel().y);
+		personaje->SetVel(5.0f, personaje->GetVel().y);
 		break;
 	case GLUT_KEY_UP:
 	{
-        vector2D ace = hombre.GetVel();
+        vector2D ace = personaje->GetVel();
 		if (ace.y == 0.0f)
 			{
-			hombre.SetVel(hombre.GetVel().x,10.0f);
-		hombre.SetAcel(0, -9.81f);
+			personaje->SetVel(personaje->GetVel().x,10.0f);
+		personaje->SetAcel(0, -9.81f);
 		}
-		break;
+		
 	}
 		
-		
+		break;
+	case GLUT_KEY_DOWN:
+		personaje->SetVel(0, 0);
+		break;
 	}
 }
 
@@ -273,15 +259,13 @@ void Mundo::teclaEspecialUp(unsigned char key)
 	switch (key)
 	{
 	case GLUT_KEY_LEFT:
-		hombre.SetVel(0.0f, 0.0f);
+		personaje->SetVel(0.0f, 0.0f);
 		break;
 	case GLUT_KEY_RIGHT:
-		hombre.SetVel(0.0f, 0.0f);
+		personaje->SetVel(0.0f, 0.0f);
 		break;
 	}
 }
-
-
 
 void Mundo::Genera()
 {
@@ -290,30 +274,30 @@ void Mundo::Genera()
 	float longitud = 5.0f;//Distancia de cada punto del txt
 	//Generamos las plataformas
 	switch (ptipo) {
-	case Mundo::CEMENTERIO:
+	case CEMENTERIO:
 		Plataformas.setTextura("imagenes/GRAVEYARD/png/plataforma.png");
 		Suelos.setTextura("imagenes/GRAVEYARD/png/suelo_m.png");
 		break;
-	case Mundo::NIEVE:
+	case NIEVE:
 		Plataformas.setTextura("imagenes/WINTER/png/plataforma.png");
 		Suelos.setTextura("imagenes/WINTER/png/suelo_m.png");
 		break;
-	case Mundo::BASICO:
+	case BASICO:
 		Plataformas.setTextura("imagenes/BASICO/png/plataforma.png");
 		Suelos.setTextura("imagenes/BASICO/png/suelo_m.png");
 		break;
 
 	}
 	std::ifstream a;
-	if (ptipo == Mundo::CEMENTERIO) {
+	if (ptipo == CEMENTERIO) {
 		a.open("CEMENTERIO_.txt");
 		Fondo.setTextura("imagenes/GRAVEYARD/png/BG.png");
 	}
-	else if (ptipo == Mundo::NIEVE) {
+	else if (ptipo == NIEVE) {
 		a.open("NIEVE_.txt");
 		Fondo.setTextura("imagenes/WINTER/png/BG.png");
 	}
-	else if (ptipo == Mundo::BASICO) {
+	else if (ptipo == BASICO) {
 		a.open("BASICO_.txt");
 		Fondo.setTextura("imagenes/BASICO/png/BG.png");
 	}
@@ -345,31 +329,26 @@ void Mundo::Genera()
 				//mapeo.push_back(aux);
 				float y = 20.0f * altura / height;
 				if (y > 0) {
-					coin* auxiliarCoin;
-					bonusBolaFuego* auxiliarBF;
-					BonusCorazon* auxiliarCorazon;
 					switch (m) {
-					case'm'://monedas
-						auxiliarCoin =new coin();
-						auxiliarCoin->SetPos(x, y);
-						listaCoins.agregar(auxiliarCoin);
+					case'm':
+						listaCoins.agregar(new coin(x, y));
 						x += longitud;
+
 						break;
-					case'd'://disparo especial-bola de fuego
-						auxiliarBF = new bonusBolaFuego();
-						auxiliarBF->SetPos(x, y);
-						listaBFuego.agregar(auxiliarBF);
+					case'd':
+						listaBFuego.agregar(new bonusBolaFuego(x , y));
 						x += longitud;
+
 						break;
-					case 'c'://corazones
-						auxiliarCorazon = new BonusCorazon();
-						auxiliarCorazon->SetPos(x, y);
-						listaCorazones.agregar(auxiliarCorazon);
+					case 'c':
+						listaCorazones.agregar(new BonusCorazon(x , y));
 						x += longitud;
+
 						break;
-					case'a'://armadura
+					case'a':
 						listaArmaduras.agregar(new BonusArmadura(x , y));
 						x += longitud;
+
 						break;
 					case 'p':
 						if (contador == 0)

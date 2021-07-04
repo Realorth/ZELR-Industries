@@ -1,9 +1,9 @@
 #pragma once
 #include "vector2D.h"
-#include "caja.h"
+
 #include "ETSIDI.h" 
 #include"objetomovil.h"
-
+#include"ColorRGB.h"
 using ETSIDI::SpriteSequence;
 
 class hombre : public objetomovil
@@ -14,13 +14,14 @@ public:
 	hombre();
 	virtual ~hombre();
 
-	void dibuja();
-	void tecla(unsigned char key);
-	void SetColor(unsigned char r, unsigned char v, unsigned char b);
+	virtual void dibuja();
+	//void tecla(unsigned char key);
+	void SetColor(Byte r, Byte g, Byte b) { color.set(r, g, b); }
 	void SetAltura(float a);
 	float GetAltura();
 	void Setvida(int v);
 	void Setataque(int a);
+	void SetArmadura(int a) { armadura = a; }
 	int Getvida() { return vida; }
 	int GetAtaque() { return ataque; }
 	int GetArmadura() { return armadura; }
@@ -34,11 +35,10 @@ public:
 
 
 protected:
-	SpriteSequence sprite{ "imagenes/gunboy.png", 3 };
+	//SpriteSequence sprite{ "imagenes/gunboy.png", 3 };
 	float altura;
-	unsigned char rojo;
-	unsigned char verde;
-	unsigned char azul;
+	ColorRGB color;
+
 	int vida = 5;
 	int ataque = 1;
 	int armadura = 0;
