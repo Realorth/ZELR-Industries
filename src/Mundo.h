@@ -18,7 +18,7 @@
 #include "ListaArmaduras.h"
 #include "ListaCorazones.h"
 #include "ListaBolaFuego.h"
-
+#include "LlaveFin.h"
 class Mundo
 {
 public:
@@ -40,13 +40,20 @@ public:
 	bool getcaida() { return caida; }
 	void setcaida(bool c) { caida = c; }
 	Vector3D getOjo() { return Vector3D(x_ojo, y_ojo, z_ojo); }
+	vector2D getHombrePosicion() { return hombre.GetPos(); }
+	void setFin(bool f) { fin = f; }
+	bool getFin() { return fin; }
+	void setMapa(int a);
+	void setHombrePosicion(float x, float y) { hombre.SetPos(0, 0); }
+
 private:
 	Vector3D ojo;
     float x_ojo;
 	float y_ojo;
 	float z_ojo;
 	bool impacto=false;
-	bool caida = false;
+	bool caida = false;//True si el personaje se cae
+	bool fin=false;//true si se llega al final del mapa y se toca la llave
 	int ncoin = 0;//Numero de monedas de cada partida
    // esfera esfera2;
 	//disparo disparo1;
@@ -73,11 +80,12 @@ private:
 	suelo Suelos;
 	plataforma Plataformas;
 	fondo Fondo;
-
-	tipo ptipo=tipo::CEMENTERIO;//Guarda el tipo de mapa
+	LlaveFin llave;
+	tipo ptipo/*=tipo::CEMENTERIO*/;//Guarda el tipo de mapa
 
 private:
 	// Funciones privadas para la generacion de mundo
 	void Genera();
 
 };
+
