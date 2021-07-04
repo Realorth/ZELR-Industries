@@ -42,8 +42,8 @@ void Mundo::inicializa()
 
 	personaje = new Pistolero();
 	personaje->SetAltura(1.8f);
-	personaje->SetPos(0, personaje->GetAltura());
-	personaje->SetAcel(0, -9.81);
+	personaje->SetPos(9.5f, 0.1f);
+	personaje->SetAcel(0, 0);
 	personaje->Setvida(5);
 	personaje->Setataque(1);
 
@@ -138,7 +138,20 @@ void Mundo::mueve()
 	disparos.mueve(0.015f);
 	personaje->mueve(0.025f);
 
-
+	//Interaccion de hombre-llaveFin
+	if (Interaccion::colision(hombre, llave)) {
+		
+		fin = true;
+		
+		if (ptipo != BASICO) {
+			personaje->SetPos(9.5f, 0.1f);
+		}
+		else
+			ETSIDI::play("sonidos/Ganar.wav");
+		personaje->SetAcel(0, 0);
+		
+	}
+	
 	BonusArmadura* auxA = listaArmaduras.colision(*personaje);
 	if (auxA != 0) {
 		personaje->AumentaArmadura();
