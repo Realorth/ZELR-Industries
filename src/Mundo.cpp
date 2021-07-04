@@ -22,6 +22,16 @@ Mundo:: ~ Mundo()
 	Suelos.destruirContenido();
 }
 
+void Mundo::destruirMapa() {
+	disparos.destruirContenido();
+	Suelos.destruirContenido();
+	Plataformas.destruirContenido();
+	Fondo.destruirContenido();
+	listaArmaduras.destruirContenido();
+	listaBFuego.destruirContenido();
+	listaCoins.destruirContenido();
+	listaCorazones.destruirContenido();
+}
 
 void Mundo::inicializa()
 {
