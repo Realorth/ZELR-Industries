@@ -23,7 +23,21 @@ Mundo:: ~ Mundo()
 	Suelos.destruirContenido();
 }
 
+void Mundo::setMapa(int l)
+{
+	tipo a = static_cast<tipo>(l);
+	//opcion 1
+	ptipo = a;
 
+	//opcion2
+	/*if (l == 0)
+		ptipo = CEMENTERIO;
+	if (l == 1)
+		ptipo =  NIEVE;
+	if (l == 2)
+		ptipo = BASICO;*/
+
+}
 void Mundo::inicializa()
 {
 	x_ojo = 0;
@@ -34,13 +48,13 @@ void Mundo::inicializa()
 	hombre.SetAltura(1.8f);
 	hombre.SetColor(255, 0, 0);
 	hombre.SetPos(0, 1.0);
-	hombre.SetVel(0, 0);
-	hombre.SetAcel(0, -9.81);
+	//hombre.SetVel(0, -5.0f);
+	//hombre.SetAcel(0, -5.0f);
 	hombre.Setvida(5);
 	hombre.Setataque(1);
 
-//	plataforma.SetPos(-5.0f, 9.0f, 5.0f, 9.0f);
-	
+	fin = false;
+	ncoin = 0;//Reestablecer a 0 cada vez que se inicializa el mapa
 	
 	bonusBolaFuego* bF1 = new bonusBolaFuego;
 	bF1->SetPos(5.0f, 1.0f);
@@ -71,7 +85,7 @@ void Mundo::inicializa()
 		listaCoins.agregar(aux);
 	}*/
 
-	
+	llave.SetPos(10, 2);
 	Genera();
 
 
@@ -88,7 +102,7 @@ void Mundo::dibuja()
 	Suelos.dibuja();
 	Fondo.dibuja();
 	Plataformas.dibuja();
-	
+	llave.dibuja();
 
 	listaCoins.dibuja();
 	listaArmaduras.dibuja();
@@ -128,7 +142,9 @@ void Mundo::mueve()
 {
 	disparos.mueve(0.015f);
 	hombre.mueve(0.025f);
-
+	if (Interaccion::colision(hombre, llave)) {
+		fin = true;
+	}
 
 	BonusArmadura* auxA = listaArmaduras.colision(hombre);
 	if (auxA != 0) {
@@ -188,7 +204,7 @@ void Mundo::tecla(unsigned char key)
 
 	switch (key)
 	{
-	case 'd':
+	/*case 'd':
 		hombre.SetVel(hombre.GetVel().x + 5, hombre.GetVel().y);
 		break;
 	case 'a':
@@ -205,7 +221,7 @@ void Mundo::tecla(unsigned char key)
 		break;
 	case 'x':
 		y_ojo -= 1.0f;
-		break;
+		break;*/
 	case ' ':
 	{
 		disparo* d = new disparo();
@@ -244,13 +260,10 @@ void Mundo::teclaEspecial(unsigned char key)
 			hombre.SetVel(hombre.GetVel().x,10.0f);
 		hombre.SetAcel(0, -9.81f);
 		}
-		
+		break;
 	}
 		
-		break;
-	case GLUT_KEY_DOWN:
-		hombre.SetVel(0, 0);
-		break;
+		
 	}
 }
 
@@ -268,6 +281,8 @@ void Mundo::teclaEspecialUp(unsigned char key)
 	}
 }
 
+
+
 void Mundo::Genera()
 {
 	int height;
@@ -275,30 +290,30 @@ void Mundo::Genera()
 	float longitud = 5.0f;//Distancia de cada punto del txt
 	//Generamos las plataformas
 	switch (ptipo) {
-	case CEMENTERIO:
+	case Mundo::CEMENTERIO:
 		Plataformas.setTextura("imagenes/GRAVEYARD/png/plataforma.png");
 		Suelos.setTextura("imagenes/GRAVEYARD/png/suelo_m.png");
 		break;
-	case NIEVE:
+	case Mundo::NIEVE:
 		Plataformas.setTextura("imagenes/WINTER/png/plataforma.png");
 		Suelos.setTextura("imagenes/WINTER/png/suelo_m.png");
 		break;
-	case BASICO:
+	case Mundo::BASICO:
 		Plataformas.setTextura("imagenes/BASICO/png/plataforma.png");
 		Suelos.setTextura("imagenes/BASICO/png/suelo_m.png");
 		break;
 
 	}
 	std::ifstream a;
-	if (ptipo == CEMENTERIO) {
+	if (ptipo == Mundo::CEMENTERIO) {
 		a.open("CEMENTERIO_.txt");
 		Fondo.setTextura("imagenes/GRAVEYARD/png/BG.png");
 	}
-	else if (ptipo == NIEVE) {
+	else if (ptipo == Mundo::NIEVE) {
 		a.open("NIEVE_.txt");
 		Fondo.setTextura("imagenes/WINTER/png/BG.png");
 	}
-	else if (ptipo == BASICO) {
+	else if (ptipo == Mundo::BASICO) {
 		a.open("BASICO_.txt");
 		Fondo.setTextura("imagenes/BASICO/png/BG.png");
 	}
@@ -330,20 +345,29 @@ void Mundo::Genera()
 				//mapeo.push_back(aux);
 				float y = 20.0f * altura / height;
 				if (y > 0) {
+					coin* auxiliarCoin;
+					bonusBolaFuego* auxiliarBF;
+					BonusCorazon* auxiliarCorazon;
 					switch (m) {
-					case'm':
-						listaCoins.agregar(new coin(x, y));
+					case'm'://monedas
+						auxiliarCoin =new coin();
+						auxiliarCoin->SetPos(x, y);
+						listaCoins.agregar(auxiliarCoin);
 						x += longitud;
 						break;
-					case'd':
-						listaBFuego.agregar(new bonusBolaFuego(x , y));
+					case'd'://disparo especial-bola de fuego
+						auxiliarBF = new bonusBolaFuego();
+						auxiliarBF->SetPos(x, y);
+						listaBFuego.agregar(auxiliarBF);
 						x += longitud;
 						break;
-					case 'c':
-						listaCorazones.agregar(new BonusCorazon(x , y));
+					case 'c'://corazones
+						auxiliarCorazon = new BonusCorazon();
+						auxiliarCorazon->SetPos(x, y);
+						listaCorazones.agregar(auxiliarCorazon);
 						x += longitud;
 						break;
-					case'a':
+					case'a'://armadura
 						listaArmaduras.agregar(new BonusArmadura(x , y));
 						x += longitud;
 						break;
