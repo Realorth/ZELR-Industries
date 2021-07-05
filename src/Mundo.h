@@ -45,6 +45,7 @@ public:
 	void setMapa(int a);
 	void destruirMapa() ;
 	void Genera();
+	void setPersonaje(int n) { EleccionPersonaje = n; }
 private:
 	Vector3D ojo;
     float x_ojo;
@@ -82,6 +83,7 @@ private:
 	LlaveFin llave;
 	tipo ptipo/*=tipo::CEMENTERIO*/;//Guarda el tipo de mapa
 	bool sentidoHombre=true;//True derecha, false izquierda
+	int EleccionPersonaje;//0 es pistolero, 1 es arquero y 2 es mago
 private:
 	void destruirContenido();
 
