@@ -17,7 +17,7 @@ public:
 	static bool colision(disparo d, pared p);
 
 	static void rebote(hombre& h,std::vector<pared*> d);
-	static void colision(hombre& h, std::vector<pared*> p);
+	static void colision_border(hombre& h, std::vector<pared*> p);
 
 
   
