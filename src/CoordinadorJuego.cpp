@@ -187,8 +187,8 @@ void CoordinadorJuego::dibuja()
 		mundo.dibuja();
 		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("GAMEOVER: Has perdido...", -5 + mundo.getHombrePosicion().x, 10);
-		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5 + mundo.getHombrePosicion().x, 5);
+		ETSIDI::printxy("GAMEOVER: Has perdido...", -5 + mundo.getOjo().x, 10);
+		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5 + mundo.getOjo().x, 5);
 		/*if (flagSonido) {
 			ETSIDI::play("sonidos/GameOver.wav");
 			flagSonido = false;
@@ -215,8 +215,8 @@ void CoordinadorJuego::dibuja()
 		static bool flag = true;
 		mundo.dibuja();
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
-		ETSIDI::printxy("ENHORABUENA:¡¡Has triunfado!!", -5 + mundo.getHombrePosicion().x, 10);
-		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5 + mundo.getHombrePosicion().x, 9);
+		ETSIDI::printxy("ENHORABUENA:¡¡Has triunfado!!", -5 + mundo.getOjo().x, 10);
+		ETSIDI::printxy("PULSE LA TECLA -C- PARA CONTINUAR", -5 + mundo.getOjo().x, 9);
 
 		//Almacenamiento de las monedas adquiridas en el fichero .txt
 		if (flag) {
