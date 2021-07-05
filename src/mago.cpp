@@ -1,16 +1,19 @@
 #include "mago.h"
 
-mago::mago() :spritemago("imagenes/mago.png", 3), hombre()
+mago::mago() :spritemago("imagenes/mago1.png", 3), hombre()
 {
+	spritemago.setCenter(1, 0);
+	spritemago.setSize(2.5f,2.5f);
 	vida = 3;
 	ataque = 3;
 	aceleracion.x = aceleracion.y = 0;
+	
 }
 mago::~mago()
 {}
 void mago::dibuja()
 {
-	// TODO: Agregar aquí el código de implementación.
+	// TODO: Agregar aquÃ­ el cÃ³digo de implementaciÃ³n.
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
