@@ -214,20 +214,26 @@ void Mundo::tecla(unsigned char key)
 		y_ojo -= 1.0f;
 		break;
 	case ' ':
-	{
+		{
 		disparo* d = new disparo();
-		vector2D pos = personaje->GetPos();
+		vector2D pos = hombre.GetPos();
 		d->SetPos(pos.x, pos.y);
+
 		d->SetOrigen(pos.x, pos.y);
+		if (sentidoHombre)
+			d->SetAcel(9.8, 0);//Disparo hacia la derecha
+		else
+			d->SetAcel(-9.8, 0);//Disparo hacia la izquierda
 		if (disparos.agregar(d))
 		{
  			ETSIDI::play("sonidos/pistola.wav");
-            personaje->SetVel(0, 0);
+            hombre.SetVel(0, 0);
+            		hombre.SetVel(0, 0);
 		}
-			
+
 		else delete d;
 		break;
-	}
+		}
 
 	}
 
@@ -240,9 +246,11 @@ switch (key)
 	{
 	case GLUT_KEY_LEFT:
 		personaje->SetVel(-5.0f, personaje->GetVel().y);
+		sentidoHombre = false;
 		break;
 	case GLUT_KEY_RIGHT:
 		personaje->SetVel(5.0f, personaje->GetVel().y);
+		sentidoHombre =true;
 		break;
 	case GLUT_KEY_UP:
 	{
