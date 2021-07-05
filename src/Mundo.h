@@ -43,7 +43,9 @@ public:
 	void setFin(bool f) { fin = f; }
 	bool getFin() { return fin; }
 	void setMapa(int a);
+	void setMapa(tipo a) { ptipo = a; }
 	void destruirMapa() ;
+	bool CargarNivel();//Falta por definir
 	void Genera();
 	void setPersonaje(int n) { EleccionPersonaje = n; }
 private:
@@ -55,13 +57,9 @@ private:
 	bool caida = false;//True si el personaje se cae
 	bool fin=false;//true si se llega al final del mapa y se toca la llave
 	int ncoin = 0;//Numero de monedas de cada partida
-   // esfera esfera2;
-	//disparo disparo1;
-	//esfera esfera1;
-	hombre hombre;
-//	caja caja;
-	//bonus bonus;
-	//pared plataforma;
+
+	hombre* personaje;
+
 
 	listadisparos disparos;
 
