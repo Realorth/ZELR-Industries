@@ -21,10 +21,10 @@ bool Interaccion::colision(disparo d, pared p)
 void Interaccion::colision(hombre& h, pared p)
 {
 	//Para que no se salga el hombre del mapa
-	if (h.GetPos().x < -3.5f)
+	/*if (h.GetPos().x < -3.5f)
 		h.posicion.x = -3.5f;
 	if (h.GetPos().x > 293)
-		h.posicion.x = 293;
+		h.posicion.x = 293;*/
 	
 
 	vector2D dir;
@@ -40,59 +40,29 @@ void Interaccion::colision(hombre& h, pared p)
 
 }
 
-//bool Interaccion::colision(hombre h, bonus b)
-//{
-//	vector2D posHombre = h.GetPos(); //la posicion de la base del hombre
-//	vector2D posBonus = b.GetPos();
-//
-//	//posHombre.y += h.GetAltura(); // 2.0f; //posicion del centro
-//	float distancia = (posBonus - posHombre).modulo();
-//	if (distancia<=0)//((posHombre.x==posBonus.x)&&(posHombre.y==posBonus.y))//distancia<posBonus.modulo())
-//		return true;
-//	else return false;
-//	//pos.y += h.GetAltura() / 2.0f; //posicion del centro
-//	//float distancia = (b.posicion - pos).modulo();
-//	//if (distancia < b.radio)
-//	//	return true;
-//	//return false;
-//	
-//}
 
 
 void Interaccion::rebote(hombre& h, std::vector<pared*> d)
 {
 
 	for (auto i : d) {
-		if(i!=nullptr)
+		if(i!=d.front()&&i!=d.back())
 		colision(h, *i);
+		else
+		colision_border(h,d);
 	}
-
+	
 }
 
+void Interaccion::colision_border(hombre& h, std::vector<pared*> p){
 
-//bool Interaccion::colision(hombre h, BonusArmadura b)
-//{
-//	vector2D pos = h.GetPos(); //la posicion de la base del hombre
-//	vector2D posBonus = b.GetPos();
-//	pos.y += h.GetAltura() / 2.0f; //posicion del centro
-//	float distancia = (posBonus - pos).modulo();
-//	if (distancia < 1.0f)
-//		return true;
-//	return false;
-//
-//}
+	auto margenSeguridad = 0.1f;
+	if (h.GetPos().x <= p.front()->GetLim1().x + margenSeguridad)
+		h.posicion.x = p.front()->GetLim1().x + 0.5f;
+	if (h.GetPos().x >= p.back()->GetLim2().x - margenSeguridad)
+		h.posicion.x = p.back()->GetLim2().x - 0.5f;
+}
 
-//bool Interaccion::colision(hombre h, bonusBolaFuego b)
-//{
-//	vector2D pos = h.GetPos(); //la posicion de la base del hombre
-//	vector2D posBonus = b.GetPos();
-//	pos.y += h.GetAltura() / 2.0f; //posicion del centro
-//	float distancia = (posBonus - pos).modulo();
-//	if (distancia < 1.0f)
-//		return true;
-//	return false;
-//
-//}
 
 bool Interaccion::colision(hombre h, bonus& b)
 {
@@ -104,19 +74,8 @@ bool Interaccion::colision(hombre h, bonus& b)
 		return true;
 	return false;
 }
-//
-//bool Interaccion::colision(hombre h, BonusCorazon b)
-//{
-//	vector2D pos = h.GetPos(); //la posicion de la base del hombre
-//	vector2D posBonus = b.GetPos();
-//	pos.y += h.GetAltura() / 2.0f; //posicion del centro
-//	float distancia = (posBonus - pos).modulo();
-//	if (distancia < 1.0f)
-//		return true;
-//	return false;
-//
-//}
-//
+
+
 bool Interaccion::colision(hombre h, coin c)
 {
 	vector2D pos = h.GetPos(); //la posicion de la base del hombre
