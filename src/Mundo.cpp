@@ -179,10 +179,8 @@ BonusArmadura* auxA = listaArmaduras.colision(*personaje);
 		x_ojo = personaje->GetPos().x;
 
 
-	/*Interaccion::rebote(hombre, mapa.GetPlataforma());
-	Interaccion::rebote(hombre,mapa.GetSuelo() );*/
-	Interaccion::rebote(hombre, Suelos.getSuelo());
-	Interaccion::rebote(hombre, Plataformas.getPlataforma());
+	Interaccion::rebote(*personaje, Suelos.getSuelo());
+	Interaccion::rebote(*personaje, Plataformas.getPlataforma());
 
 	
 
@@ -338,8 +336,7 @@ void Mundo::Genera()
 			}
 			if (!std::strcmp(aux.c_str(), "map") || flag == true) {
 				a >> m;
-				//std::getline(a, aux);
-				//mapeo.push_back(aux);
+				
 				float y = 20.0f * altura / height;
 				if (y > 0) {
 
