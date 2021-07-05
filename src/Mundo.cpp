@@ -50,7 +50,7 @@ void Mundo::inicializa()
 	hombre.SetAltura(1.8f);
 	hombre.SetColor(255, 0, 0);
 	hombre.SetPos(9.5f, 0.1f);
-	hombre.SetAcel(0, 0);
+	hombre.SetAcel(0, -9.81f);
 	hombre.Setvida(5);
 	hombre.Setataque(1);
 
@@ -159,12 +159,6 @@ void Mundo::mueve()
 	}
 	if (Interaccion::muertecaida(hombre) == true) {
 		caida = true;
-		//Limpia las listas para la siguiente partida
-	/*	listaArmaduras.destruirContenido();
-		listaBFuego.destruirContenido();
-		listaCoins.destruirContenido();
-		listaCorazones.destruirContenido();*/
-		//Personajes con armaduras, vidas por defecto
 	}
 		
 
@@ -174,7 +168,10 @@ void Mundo::mueve()
 			disparos.eliminar(disparos[i]);
 		}
 	}
-	x_ojo = hombre.GetPos().x;
+	
+	//Cuando el personaje se va hacia los bordes, la camara no se mueve
+	if (personaje->GetPos().x > 9.5 && personaje->GetPos().x < 280)
+		x_ojo = personaje->GetPos().x;
 
 
 	/*Interaccion::rebote(hombre, mapa.GetPlataforma());
