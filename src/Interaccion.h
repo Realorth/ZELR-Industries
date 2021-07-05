@@ -17,12 +17,12 @@ public:
 	static bool colision(disparo d, pared p);
 
 	static void rebote(hombre& h,std::vector<pared*> d);
-	
+	static void colision(hombre& h, std::vector<pared*> p);
 
 
   
 	static void colision(hombre& h, pared p);
-	//Cosas  nuevas añadidas
+	//Cosas  nuevas aÃ±adidas
 	//static bool colision(hombre h, bonus b);
 	//static bool colision(hombre h, BonusArmadura b);
 	//static bool colision(hombre h, BonusCorazon b);
