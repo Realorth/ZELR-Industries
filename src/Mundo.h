@@ -43,14 +43,7 @@ public:
 	void setFin(bool f) { fin = f; }
 	bool getFin() { return fin; }
 	void setMapa(int a);
-	void destruirMapa() {
-		Suelos.destruirContenido();
-		Plataformas.destruirContenido();
-		listaArmaduras.destruirContenido();
-		listaBFuego.destruirContenido();
-		listaCoins.destruirContenido();
-		listaCorazones.destruirContenido();
-	}
+	void destruirMapa() ;
 	void Genera();
 private:
 	Vector3D ojo;
