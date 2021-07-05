@@ -23,16 +23,29 @@ Mundo:: ~ Mundo()
 	Suelos.destruirContenido();
 }
 
+void Mundo::destruirMapa() {
+	disparos.destruirContenido();
+	Suelos.destruirContenido();
+	Plataformas.destruirContenido();
+	Fondo.destruirContenido();
+	listaArmaduras.destruirContenido();
+	listaBFuego.destruirContenido();
+	listaCoins.destruirContenido();
+	listaCorazones.destruirContenido();
+	x_ojo = 9.5f;
+	personaje->SetPos(9.5f, 0.1f);
+}
+
 void Mundo::setMapa(int l)
 {
 	ptipo = tipo (l);
 }
 void Mundo::inicializa()
 {
-	x_ojo = 0;
+	x_ojo = 9.5;
 	y_ojo = 7.5;
 	z_ojo = 30;
-	ojo.set(0, 7.5, 30);
+	ojo.set(9.5, 7.5, 30);
 
 	hombre.SetAltura(1.8f);
 	hombre.SetColor(255, 0, 0);
@@ -44,36 +57,7 @@ void Mundo::inicializa()
 	fin = false;
 	ncoin = 0;//Reestablecer a 0 cada vez que se inicializa el mapa
 	
-	/*bonusBolaFuego* bF1 = new bonusBolaFuego;
-	bF1->SetPos(5.0f, 1.0f);
-	std::cout << bF1->GetPos().x << " " << bF1->GetPos().y << std::endl;
-	listaBFuego.agregar(bF1);
-	std::cout << listaBFuego.getNumero() << std::endl;
-	BonusCorazon* cor1 = new BonusCorazon;
-	cor1->SetPos(8.0f, 1.0f);
-	std::cout << cor1->GetPos().x << " " << cor1->GetPos().y << std::endl;
-	listaCorazones.agregar(cor1);
-	BonusArmadura* arm1 = new BonusArmadura;
-	arm1->SetPos(0.0f, 2.0f);
-	std::cout << arm1->GetPos().x << " " << arm1->GetPos().y << std::endl;
-	listaArmaduras.agregar(arm1);
-	coin* moneda1 = new coin;
-	moneda1->SetPos(-3.0f, 1.0f);
-	std::cout << moneda1->GetPos().x << " " << moneda1->GetPos().y << std::endl;
-	listaCoins.agregar(moneda1);
-
-
-	coin* moneda2 = new coin;
-	moneda2->SetPos(-3.0f, 3.0f);
-	std::cout << moneda2->GetPos().x << " " << moneda2->GetPos().y << std::endl;
-	listaCoins.agregar(moneda2);*/
-	/*for (int i = 0; i < 6; i++) {
-		coin* aux = new coin;
-		aux->SetPos(i, i + 1);
-		listaCoins.agregar(aux);
-	}*/
-
-	llave.SetPos(15, 2);
+	llave.SetPos(285, 2);
 	Genera();
 
 
