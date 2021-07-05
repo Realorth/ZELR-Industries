@@ -4,7 +4,7 @@
 class arquero : public hombre
 {
 protected:
-	SpriteSequence spritearquero{ "imagenes/arquero1.png", 3 };
+	SpriteSequence spritearquero{ "imagenes/arquero1.png", 4 };
 
 public:
 	void dibuja();
