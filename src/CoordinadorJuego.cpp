@@ -26,6 +26,17 @@ void CoordinadorJuego::tecla(unsigned char key)
 {
 	if (estado == INICIO) {
 		if (key == 'e') {
+			mundo.setPersonaje(0);
+			mundo.inicializa();
+			estado = JUEGO;
+		}
+		if (key == 'r') {
+			mundo.setPersonaje(1);
+			mundo.inicializa();
+			estado = JUEGO;
+		}
+		if (key == 't') {
+			mundo.setPersonaje(2);
 			mundo.inicializa();
 			estado = JUEGO;
 		}
