@@ -40,7 +40,6 @@ public:
 	bool getcaida() { return caida; }
 	void setcaida(bool c) { caida = c; }
 	Vector3D getOjo() { return Vector3D(x_ojo, y_ojo, z_ojo); }
-	vector2D getHombrePosicion() { return hombre.GetPos(); }
 	void setFin(bool f) { fin = f; }
 	bool getFin() { return fin; }
 	void setMapa(int a);
