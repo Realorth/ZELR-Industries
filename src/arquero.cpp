@@ -1,7 +1,9 @@
 #include "arquero.h"
 
-arquero::arquero() : hombre()
+arquero::arquero() : hombre(), spritearquero("imagenes/arquero1.png", 4 )
 {
+	spritearquero.setCenter(1, 0);
+	spritearquero.setSize(3, 2.5f);
 	vida = 4;
 	ataque = 2;
 	aceleracion.x = aceleracion.y = 0;
@@ -11,7 +13,7 @@ arquero::~arquero()
 {}
 void arquero::dibuja()
 {
-	// TODO: Agregar aquí el código de implementación.
+	// TODO: Agregar aquÃ­ el cÃ³digo de implementaciÃ³n.
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
