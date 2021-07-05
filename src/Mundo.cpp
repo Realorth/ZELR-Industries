@@ -47,12 +47,12 @@ void Mundo::inicializa()
 	z_ojo = 30;
 	ojo.set(9.5, 7.5, 30);
 
-	hombre.SetAltura(1.8f);
-	hombre.SetColor(255, 0, 0);
-	hombre.SetPos(9.5f, 0.1f);
-	hombre.SetAcel(0, -9.81f);
-	hombre.Setvida(5);
-	hombre.Setataque(1);
+	personaje = new Pistolero();
+	personaje->SetAltura(1.8f);
+	personaje->SetPos(0, personaje->GetAltura());
+	personaje->SetAcel(0, -9.81);
+	personaje->Setvida(5);
+	personaje->Setataque(1);
 
 	fin = false;
 	ncoin = 0;//Reestablecer a 0 cada vez que se inicializa el mapa
@@ -132,7 +132,7 @@ void Mundo::mueve()
 		personaje->SetAcel(0, 0);
 
 	}
-BonusArmadura* auxA = listaArmaduras.colision(*personaje);
+	BonusArmadura* auxA = listaArmaduras.colision(*personaje);
 	if (auxA != 0) {
 		personaje->AumentaArmadura();
 		ETSIDI::play("sonidos/Bonus.wav");
