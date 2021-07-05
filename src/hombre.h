@@ -21,13 +21,16 @@ public:
 	float GetAltura();
 	void Setvida(int v);
 	void Setataque(int a);
+
 	void SetArmadura(int a) { armadura = a; }
 	int Getvida() { return vida; }
 	int GetAtaque() { return ataque; }
 	int GetArmadura() { return armadura; }
+	int GetAtaqueEs() { return ataqueEspecial; }
 	void AumentaVida() { vida += 1; }
 	void AumentaAtaque() { ataque += 1; }
 	void AumentaArmadura() { armadura += 1; }
+	void AumentarAtaqueEs() { ataqueEspecial += 1; }
 	void mueve(float t) { objetomovil::mueve(t); 
 	if (this->velocidad.y < -5) velocidad.y = -5;
 	}
@@ -42,6 +45,6 @@ protected:
 	int vida = 5;
 	int ataque = 1;
 	int armadura = 0;
-
+	int ataqueEspecial=0;
 };
 
