@@ -18,11 +18,7 @@
 #include "ListaArmaduras.h"
 #include "ListaCorazones.h"
 #include "ListaBolaFuego.h"
-#include"Pistolero.h"
-#include "arquero.h"
-#include "mago.h"
-#include"LlaveFin.h"
-
+#include "LlaveFin.h"
 class Mundo
 {
 public:
@@ -43,30 +39,33 @@ public:
 	void setImpacto(bool i) { impacto = i; }
 	bool getcaida() { return caida; }
 	void setcaida(bool c) { caida = c; }
-	void SetMapa(int l) { ptipo = tipo(l); }
-	void SetMapa(tipo a) { ptipo = a; }
-	tipo GetTipo() { return ptipo; }
 	Vector3D getOjo() { return Vector3D(x_ojo, y_ojo, z_ojo); }
+	vector2D getHombrePosicion() { return hombre.GetPos(); }
 	void setFin(bool f) { fin = f; }
 	bool getFin() { return fin; }
-	void setHombrePosicion(float x, float y) { personaje->SetPos(0, 0); }
-	vector2D getHombrePosicion() { return personaje->GetPos(); }
-	bool CargarNivel();
-	void destruirMapa() ;
-
+	void setMapa(int a);
+	void destruirMapa() {
+		Suelos.destruirContenido();
+		Plataformas.destruirContenido();
+		listaArmaduras.destruirContenido();
+		listaBFuego.destruirContenido();
+		listaCoins.destruirContenido();
+		listaCorazones.destruirContenido();
+	}
+	void Genera();
 private:
 	Vector3D ojo;
     float x_ojo;
 	float y_ojo;
 	float z_ojo;
 	bool impacto=false;
-	bool caida = false;
-	bool fin = false;
+	bool caida = false;//True si el personaje se cae
+	bool fin=false;//true si se llega al final del mapa y se toca la llave
 	int ncoin = 0;//Numero de monedas de cada partida
    // esfera esfera2;
 	//disparo disparo1;
 	//esfera esfera1;
-	hombre* personaje;
+	hombre hombre;
 //	caja caja;
 	//bonus bonus;
 	//pared plataforma;
@@ -89,10 +88,6 @@ private:
 	plataforma Plataformas;
 	fondo Fondo;
 	LlaveFin llave;
-	tipo ptipo;// = tipo::CEMENTERIO;//Guarda el tipo de mapa
-
-private:
-	// Funciones privadas para la generacion de mundo
-	void Genera();
+	tipo ptipo/*=tipo::CEMENTERIO*/;//Guarda el tipo de mapa
 
 };
