@@ -82,5 +82,7 @@ private:
 	LlaveFin llave;
 	tipo ptipo/*=tipo::CEMENTERIO*/;//Guarda el tipo de mapa
 	bool sentidoHombre=true;//True derecha, false izquierda
+private:
+	void destruirContenido();
 
 };
