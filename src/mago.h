@@ -4,7 +4,7 @@
 class mago: public hombre
 {
 protected:
-	SpriteSequence spritemago{ "imagenes/mago1.png", 4 };
+	SpriteSequence spritemago{ "imagenes/mago1.png", 3 };
 
 public:
 	void dibuja();
