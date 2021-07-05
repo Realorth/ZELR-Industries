@@ -49,36 +49,6 @@ void Mundo::inicializa()
 
 	fin = false;
 	ncoin = 0; //Reestablecer a 0 cada vez que se inicializa el mapa
-	bonusBolaFuego* bF1 = new bonusBolaFuego;
-	bF1->SetPos(5.0f, 1.0f);
-	std::cout << bF1->GetPos().x << " " << bF1->GetPos().y << std::endl;
-	listaBFuego.agregar(bF1);
-	std::cout << listaBFuego.getNumero() << std::endl;
-	BonusCorazon* cor1 = new BonusCorazon;
-	cor1->SetPos(8.0f, 1.0f);
-	std::cout << cor1->GetPos().x << " " << cor1->GetPos().y << std::endl;
-	listaCorazones.agregar(cor1);
-	BonusArmadura* arm1 = new BonusArmadura;
-	arm1->SetPos(0.0f, 2.0f);
-	std::cout << arm1->GetPos().x << " " << arm1->GetPos().y << std::endl;
-	listaArmaduras.agregar(arm1);
-	coin* moneda1 = new coin;
-	moneda1->SetPos(-3.0f, 1.0f);
-	std::cout << moneda1->GetPos().x << " " << moneda1->GetPos().y << std::endl;
-	listaCoins.agregar(moneda1);
-
-
-	coin* moneda2 = new coin;
-	moneda2->SetPos(-3.0f, 3.0f);
-	std::cout << moneda2->GetPos().x << " " << moneda2->GetPos().y << std::endl;
-	listaCoins.agregar(moneda2);
-	/*for (int i = 0; i < 6; i++) {
-		coin* aux = new coin;
-		aux->SetPos(i, i + 1);
-		listaCoins.agregar(aux);
-	}*/
-
-	
 	Genera();
 	llave.SetPos(10, 2);
 
@@ -107,30 +77,30 @@ void Mundo::dibuja()
 	//Cantidad de vidas
 	ETSIDI::setTextColor(1, 0, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string vidaHombre = std::to_string(personaje->Getvida());
-	ETSIDI::printxy("Vidas", -13 + personaje->GetPos().x, 17);
-	ETSIDI::printxy(vidaHombre.c_str(), -11 + personaje->GetPos().x, 17);
+	std::string vidaHombre = std::to_string(hombre.Getvida());
+	ETSIDI::printxy("Vidas", -13 + hombre.GetPos().x, 17);
+	ETSIDI::printxy(vidaHombre.c_str(), -11 + hombre.GetPos().x, 17);
 
 	//Cantidad de armaduras
 	ETSIDI::setTextColor(0.5, 0.5, 0.5);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string armHombre = std::to_string(personaje->GetArmadura());
-	ETSIDI::printxy("Armaduras", -1 + personaje->GetPos().x, 17);
-	ETSIDI::printxy(armHombre.c_str(), 2 + personaje->GetPos().x, 17);
+	std::string armHombre = std::to_string(hombre.GetArmadura());
+	ETSIDI::printxy("Armaduras", 2 + hombre.GetPos().x, 17);
+	ETSIDI::printxy(armHombre.c_str(), 5 + hombre.GetPos().x, 17);
 
 	//Cantidad de monedas
 	ETSIDI::setTextColor(1, 1, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
 	std::string s = std::to_string(ncoin);
-	ETSIDI::printxy("Monedas", -9 + personaje->GetPos().x, 17);
-	ETSIDI::printxy(s.c_str(), -6 + personaje->GetPos().x, 17);
+	ETSIDI::printxy("Monedas", -9 + hombre.GetPos().x, 17);
+	ETSIDI::printxy(s.c_str(), -6 + hombre.GetPos().x, 17);
 
-	//Ataque a enemigos
+	//Ataque Especial a enemigos
 	ETSIDI::setTextColor(1, 1, 1);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string ataqueHombre = std::to_string(personaje->GetAtaque());
-	ETSIDI::printxy("Ataque", -5+personaje->GetPos().x, 17);
-	ETSIDI::printxy(ataqueHombre.c_str(), -3 + personaje->GetPos().x, 17);
+	std::string ataqueHombre = std::to_string(hombre.GetAtaqueEs());
+	ETSIDI::printxy("Ataque Especial", -5+hombre.GetPos().x, 17);
+	ETSIDI::printxy(ataqueHombre.c_str(), 0 + hombre.GetPos().x, 17);
 }
 
 void Mundo::mueve()
@@ -169,7 +139,7 @@ void Mundo::mueve()
 
 	bonusBolaFuego* auxB = listaBFuego.colision(*personaje);
 	if (auxB != 0) {
-		personaje->AumentaAtaque();
+		hombre.AumentarAtaqueEs();
 		ETSIDI::play("sonidos/Bonus.wav");
 		listaBFuego.eliminar(auxB);
 	}
