@@ -9,12 +9,12 @@ public:
 	objetomovil(vector2D a):posicion(a),velocidad(0,0),aceleracion(0,0){}
 	~objetomovil();
 
-	void mueve(float t);
+	virtual void mueve(float t);
 	vector2D& GetPos();
 	void SetPos(float x, float y);
 	void SetVel(float x, float y);
 	void SetAcel(float x, float y);
-	// Ahora sí se le pasa un vector2D
+	// Ahora sÃ­ se le pasa un vector2D
 	void SetPos(vector2D a) { posicion = a; }
 	void SetVel(vector2D a) { velocidad = a; }
 	void SetAcel(vector2D a) { aceleracion = a; }
