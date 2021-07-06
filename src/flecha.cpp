@@ -14,7 +14,7 @@ flecha::~flecha()
 
 void flecha::dibuja() {
 	glPushMatrix();
-	glTranslatef(posicion.x, posicion.y, 0);
+	glTranslatef(posicion.x, posicion.y+1, 0);
 	S_Flecha.draw();
 	glPopMatrix();
 }
