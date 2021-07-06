@@ -267,19 +267,12 @@ switch (key)
 		sentidoHombre =true;
 		break;
 	case GLUT_KEY_UP:
-	{
-        vector2D ace = personaje->GetVel();
+        	vector2D ace = personaje->GetVel();
 		if (ace.y == 0.0f)
-			{
+		{
 			personaje->SetVel(personaje->GetVel().x,10.0f);
-		personaje->SetAcel(0, -9.81f);
+			personaje->SetAcel(0, -9.81f);
 		}
-		
-	}
-		
-		break;
-	case GLUT_KEY_DOWN:
-		personaje->SetVel(0, 0);
 		break;
 	}
 }
