@@ -93,29 +93,29 @@ void Mundo::dibuja()
 	ETSIDI::setTextColor(1, 0, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
 	std::string vidaHombre = std::to_string(personaje->Getvida());
-	ETSIDI::printxy("Vidas", -13 + personaje->GetPos().x, 17);
-	ETSIDI::printxy(vidaHombre.c_str(), -11 + personaje->GetPos().x, 17);
+	ETSIDI::printxy("Vidas", -13 + x_ojo, 17);
+	ETSIDI::printxy(vidaHombre.c_str(), -11 + x_ojo, 17);
 
 	//Cantidad de armaduras
 	ETSIDI::setTextColor(0.5, 0.5, 0.5);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
 	std::string armHombre = std::to_string(personaje->GetArmadura());
-	ETSIDI::printxy("Armaduras", 2 + personaje->GetPos().x, 17);
-	ETSIDI::printxy(armHombre.c_str(), 5 + personaje->GetPos().x, 17);
+	ETSIDI::printxy("Armaduras", 2 + x_ojo, 17);
+	ETSIDI::printxy(armHombre.c_str(), 5 + x_ojo, 17);
 
 	//Cantidad de monedas
 	ETSIDI::setTextColor(1, 1, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
 	std::string s = std::to_string(ncoin);
-	ETSIDI::printxy("Monedas", -9 + personaje->GetPos().x, 17);
-	ETSIDI::printxy(s.c_str(), -6 + personaje->GetPos().x, 17);
+	ETSIDI::printxy("Monedas", -9 + x_ojo, 17);
+	ETSIDI::printxy(s.c_str(), -6 + x_ojo, 17);
 
 	//Ataque a enemigos
 	ETSIDI::setTextColor(1, 1, 1);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
 	std::string ataqueHombre = std::to_string(personaje->GetAtaqueEs());
-	ETSIDI::printxy("Ataque Especial", -5+ personaje->GetPos().x, 17);
-	ETSIDI::printxy(ataqueHombre.c_str(), 0 + personaje->GetPos().x, 17);
+	ETSIDI::printxy("Ataque Especial", -5+ x_ojo, 17);
+	ETSIDI::printxy(ataqueHombre.c_str(), 0 + x_ojo, 17);
 }
 
 void Mundo::mueve()
@@ -179,7 +179,7 @@ void Mundo::mueve()
 	}
 	
 	//Cuando el personaje se va hacia los bordes, la camara no se mueve
-	if (personaje->GetPos().x > Suelos.getSuelo().front()->GetLim1().x && personaje->GetPos().x < Suelos.getSuelo().back()->GetLim2().x)
+	if (personaje->GetPos().x > 9.5 && personaje->GetPos().x < 293)
 		x_ojo = personaje->GetPos().x;
 
 
@@ -197,6 +197,7 @@ void Mundo::tecla(unsigned char key)
 
 	switch (key)
 	{
+	/*
 	case 'd':
 	case 'D':
 		personaje->SetVel(personaje->GetVel().x + 5, personaje->GetVel().y);
@@ -204,7 +205,7 @@ void Mundo::tecla(unsigned char key)
 	case 'a':
 	case 'A':
 		personaje->SetVel(personaje->GetVel().x - 5, personaje->GetVel().y);
-		break;
+		break;*/
 	case'w' :
 		z_ojo += 1.0f;
 		break;
@@ -219,7 +220,7 @@ void Mundo::tecla(unsigned char key)
 		break;
 	case ' ':
 			{
-		disparo* d = new disparo();
+		disparo* d = new bala();
 		vector2D pos = personaje->GetPos();
 		d->SetPos(pos.x, pos.y);
 
