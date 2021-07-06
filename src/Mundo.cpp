@@ -154,7 +154,7 @@ void Mundo::mueve()
 
 	bonusBolaFuego* auxB = listaBFuego.colision(*personaje);
 	if (auxB != 0) {
-		personaje->AumentaAtaque();
+		personaje->AumentarAtaqueEs();
 		ETSIDI::play("sonidos/Bonus.wav");
 		listaBFuego.eliminar(auxB);
 	}
