@@ -33,6 +33,7 @@ void Mundo::destruirMapa() {
 	listaCorazones.destruirContenido();
 	x_ojo = 9.5f;
 	personaje->SetPos(x_ojo, 0.1f);
+	personaje->SetAcel(0,-9.81);
 }
 
 void Mundo::setMapa(int l)
@@ -179,7 +180,7 @@ void Mundo::mueve()
 	}
 	
 	//Cuando el personaje se va hacia los bordes, la camara no se mueve
-	if (personaje->GetPos().x > 9.5 && personaje->GetPos().x < 293)
+	if (personaje->GetPos().x > 9.5 && personaje->GetPos().x < 280)
 		x_ojo = personaje->GetPos().x;
 
 
