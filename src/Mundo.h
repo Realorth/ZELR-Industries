@@ -5,6 +5,9 @@
 #include "arquero.h"
 #include "bonus.h"
 #include "disparo.h"
+#include "flecha.h"
+#include "Magia.h"
+#include "bala.h"
 #include "pared.h"
 #include "disparoespecial.h"
 #include "Vector3D.h"
@@ -62,7 +65,7 @@ private:
 	int ncoin = 0;//Numero de monedas de cada partida
 
 	hombre* personaje;
-
+	disparo* disparo1;
 
 	listadisparos disparos;
 
