@@ -6,5 +6,8 @@ class bala :
 public:
 	bala();
 	virtual ~bala();
+	void dibuja();
+protected:
+	ETSIDI::Sprite SBala;
 };
 
