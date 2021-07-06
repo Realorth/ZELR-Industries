@@ -46,8 +46,14 @@ void Mundo::inicializa()
 	y_ojo = 7.5;
 	z_ojo = 30;
 	ojo.set(9.5, 7.5, 30);
-
-	personaje = new Pistolero();
+	
+	if(EleccionPersonaje==0)
+		personaje = new Pistolero();
+	else if(EleccionPersonaje==1)
+		personaje = new arquero();
+	else if(EleccionPersonaje==2)
+		personaje = new mago();
+	
 	personaje->SetAltura(1.8f);
 	personaje->SetPos(0, personaje->GetAltura());
 	personaje->SetAcel(0, -9.81);
