@@ -3,12 +3,11 @@
 #include <math.h>
 #include "hombre.h"
 
-disparo::disparo() :sprite("imagenes/disparo.png"),objetomovil()
+disparo::disparo() :objetomovil()
 {
 	aceleracion.x = 9.8;
 	aceleracion.y = 0;
-	sprite.setCenter(0.3f, 0.5f);
-	sprite.setSize(1.5f, 1.5f);
+	
 
 }
 
