@@ -21,10 +21,11 @@ bool Interaccion::colision(disparo d, pared p)
 void Interaccion::colision(hombre& h, pared p)
 {
 	//Para que no se salga el hombre del mapa
-	/*if (h.GetPos().x < -3.5f)
+	if (h.GetPos().x < -3.5f)
 		h.posicion.x = -3.5f;
 	if (h.GetPos().x > 293)
-		h.posicion.x = 293;*/
+		h.posicion.x = 293;
+	
 	
 
 	vector2D dir;
@@ -44,14 +45,8 @@ void Interaccion::colision(hombre& h, pared p)
 
 void Interaccion::rebote(hombre& h, std::vector<pared*> d)
 {
-
-	for (auto i : d) {
-		if(i!=d.front()&&i!=d.back())
+	for (auto i : d) 
 		colision(h, *i);
-		else
-		colision_border(h,d);
-	}
-	
 }
 
 void Interaccion::colision_border(hombre& h, std::vector<pared*> p){
