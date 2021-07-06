@@ -10,7 +10,7 @@ public:
 	disparo();
 	virtual ~disparo();
 
-	virtual void dibuja();//Por sí existen balas especiales
+	virtual void dibuja();//Por sÃ­ existen balas especiales
 	void SetOrigen(float ox, float oy);
 	void SetColor(Byte r, Byte v, Byte b);
 	void SetRadio(float r);
@@ -22,7 +22,6 @@ public:
 	friend class listadisparos;//No
 
 protected:
-	ETSIDI::Sprite sprite;
 	vector2D origen;
 	float radio;
 	ColorRGB color;
