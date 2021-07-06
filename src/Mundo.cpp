@@ -148,7 +148,7 @@ void Mundo::mueve()
 		personaje->AumentaVida();
 		ETSIDI::play("sonidos/Bonus.wav");
 		listaCorazones.eliminar(auxC);
-		impacto = true;
+
 	}
 
 	bonusBolaFuego* auxB = listaBFuego.colision(*personaje);
