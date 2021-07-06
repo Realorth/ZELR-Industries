@@ -1,5 +1,8 @@
 #pragma once
 #include "hombre.h"
+#include "Pistolero.h"
+#include "mago.h"
+#include "arquero.h"
 #include "bonus.h"
 #include "disparo.h"
 #include "pared.h"
