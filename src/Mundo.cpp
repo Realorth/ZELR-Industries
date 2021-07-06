@@ -237,7 +237,12 @@ void Mundo::tecla(unsigned char key)
 			disparo1->SetAcel(-9.8, 0);//Disparo hacia la izquierda
 		if (disparos.agregar(disparo1))
 		{
- 			ETSIDI::play("sonidos/pistola.wav");
+ 			if (EleccionPersonaje == 0)
+				ETSIDI::play("sonidos/pistola.wav");
+			else if (EleccionPersonaje == 1)
+				ETSIDI::play("sonidos/flecha.wav");
+			else if (EleccionPersonaje == 2)
+				ETSIDI::play("sonidos/magia.wav");
 			personaje->SetVel(0, 0);
 		}
 
