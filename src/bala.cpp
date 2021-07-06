@@ -14,7 +14,7 @@ bala::~bala()
 void bala::dibuja()
 {
 	glPushMatrix();
-	glTranslatef(posicion.x, posicion.y, 0);
+	glTranslatef(posicion.x, posicion.y+1, 0);
 	SBala.draw();
 	glPopMatrix();
 }
