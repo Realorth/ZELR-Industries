@@ -220,26 +220,30 @@ void Mundo::tecla(unsigned char key)
 		y_ojo -= 1.0f;
 		break;
 	case ' ':
-			{
-		disparo* d = new bala();
+				{
+		if (EleccionPersonaje == 0)
+			disparo1 = new bala();
+		else if (EleccionPersonaje == 1)
+			disparo1 = new flecha();
+		else if (EleccionPersonaje == 2)
+			disparo1 = new Magia();
+		
 		vector2D pos = personaje->GetPos();
-		d->SetPos(pos.x, pos.y);
-
-		d->SetOrigen(pos.x, pos.y);
+		disparo1->SetPos(pos.x, pos.y);
+		disparo1->SetOrigen(pos.x, pos.y);
 		if (sentidoHombre)
-			d->SetAcel(9.8, 0);//Disparo hacia la derecha
+			disparo1->SetAcel(9.8, 0);//Disparo hacia la derecha
 		else
-			d->SetAcel(-9.8, 0);//Disparo hacia la izquierda
-		if (disparos.agregar(d))
+			disparo1->SetAcel(-9.8, 0);//Disparo hacia la izquierda
+		if (disparos.agregar(disparo1))
 		{
  			ETSIDI::play("sonidos/pistola.wav");
 			personaje->SetVel(0, 0);
 		}
 
-		else delete d;
+		else delete disparo1;
 		break;
 		}
-
 	}
 
 
