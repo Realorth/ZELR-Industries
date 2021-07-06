@@ -89,34 +89,33 @@ void Mundo::dibuja()
 	listaCorazones.dibuja();
 	listaBFuego.dibuja();
 
-
 	//Cantidad de vidas
 	ETSIDI::setTextColor(1, 0, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string vidaHombre = std::to_string(hombre.Getvida());
-	ETSIDI::printxy("Vidas", -13 + hombre.GetPos().x, 17);
-	ETSIDI::printxy(vidaHombre.c_str(), -11 + hombre.GetPos().x, 17);
+	std::string vidaHombre = std::to_string(personaje->Getvida());
+	ETSIDI::printxy("Vidas", -13 + personaje->GetPos().x, 17);
+	ETSIDI::printxy(vidaHombre.c_str(), -11 + personaje->GetPos().x, 17);
 
 	//Cantidad de armaduras
 	ETSIDI::setTextColor(0.5, 0.5, 0.5);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string armHombre = std::to_string(hombre.GetArmadura());
-	ETSIDI::printxy("Armaduras", 2 + hombre.GetPos().x, 17);
-	ETSIDI::printxy(armHombre.c_str(), 5 + hombre.GetPos().x, 17);
+	std::string armHombre = std::to_string(personaje->GetArmadura());
+	ETSIDI::printxy("Armaduras", 2 + personaje->GetPos().x, 17);
+	ETSIDI::printxy(armHombre.c_str(), 5 + personaje->GetPos().x, 17);
 
 	//Cantidad de monedas
 	ETSIDI::setTextColor(1, 1, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
 	std::string s = std::to_string(ncoin);
-	ETSIDI::printxy("Monedas", -9 + hombre.GetPos().x, 17);
-	ETSIDI::printxy(s.c_str(), -6 + hombre.GetPos().x, 17);
+	ETSIDI::printxy("Monedas", -9 + personaje->GetPos().x, 17);
+	ETSIDI::printxy(s.c_str(), -6 + personaje->GetPos().x, 17);
 
 	//Ataque a enemigos
 	ETSIDI::setTextColor(1, 1, 1);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
-	std::string ataqueHombre = std::to_string(hombre.GetAtaqueEs());
-	ETSIDI::printxy("Ataque Especial", -5+hombre.GetPos().x, 17);
-	ETSIDI::printxy(ataqueHombre.c_str(), 0 + hombre.GetPos().x, 17);
+	std::string ataqueHombre = std::to_string(personaje->GetAtaqueEs());
+	ETSIDI::printxy("Ataque Especial", -5+ personaje->GetPos().x, 17);
+	ETSIDI::printxy(ataqueHombre.c_str(), 0 + personaje->GetPos().x, 17);
 }
 
 void Mundo::mueve()
@@ -219,9 +218,9 @@ void Mundo::tecla(unsigned char key)
 		y_ojo -= 1.0f;
 		break;
 	case ' ':
-		{
+			{
 		disparo* d = new disparo();
-		vector2D pos = hombre.GetPos();
+		vector2D pos = personaje->GetPos();
 		d->SetPos(pos.x, pos.y);
 
 		d->SetOrigen(pos.x, pos.y);
@@ -232,8 +231,7 @@ void Mundo::tecla(unsigned char key)
 		if (disparos.agregar(d))
 		{
  			ETSIDI::play("sonidos/pistola.wav");
-            hombre.SetVel(0, 0);
-            		hombre.SetVel(0, 0);
+			personaje->SetVel(0, 0);
 		}
 
 		else delete d;
