@@ -1,3 +1,4 @@
+#include "bala.h"
 bala::bala() :disparo(),SBala("imagenes/disparo.png")
 {
 	aceleracion.x = 9.8;
