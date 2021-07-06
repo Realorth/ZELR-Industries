@@ -4,7 +4,7 @@ class flecha :
     public disparo
 {
 protected:
-	ETSIDI::sprite S_Flecha;
+	ETSIDI::Sprite S_Flecha;
 
 public:
 	flecha();
