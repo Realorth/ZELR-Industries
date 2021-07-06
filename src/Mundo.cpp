@@ -4,7 +4,6 @@
 #include "Interaccion.h"
 #include "vector2D.h"
 #include <iostream>
-#include "esfera.h"
 #include <fstream>
 Mundo::Mundo()
 {
