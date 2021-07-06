@@ -54,7 +54,7 @@ void Mundo::inicializa()
 		personaje = new mago();
 	
 	personaje->SetAltura(1.8f);
-	personaje->SetPos(0, personaje->GetAltura());
+	personaje->SetPos(9.5f, personaje->GetAltura());
 	personaje->SetAcel(0, -9.81);
 	personaje->Setvida(5);
 	personaje->Setataque(1);
