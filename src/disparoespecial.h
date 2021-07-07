@@ -1,3 +1,4 @@
+#pragma once
 #include "disparo.h"
 #include "objetomovil.h"
 #include "vector2D.h"
