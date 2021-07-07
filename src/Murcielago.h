@@ -6,18 +6,13 @@ class Murcielago:public Enemigos
 {
 	
 public:
+	public:
 	Murcielago();
+	Murcielago(float x, float y);
+	Murcielago(vector2D a);
+	virtual ~Murcielago(){}
 
-	Murcielago(vector2D pos, vector2D tam, int r, int hp, int armor, int atk, float vatk)	                     //---------------
-		:Enemigos(pos, tam, r, hp, armor, atk, vatk, "imagenes/Murcielago_derecha.png", 3) {}
-
-	Murcielago(vector2D pos) :Enemigos(pos, (1.0, 1.0), 15, 1000, 0, 3, 0, "imagenes/Murcielago_derecha.png", 3) {}
-
-	void vuela();
-
-	void mueve( hombre& h); //persigue
-	
-	void ataca() {}
-	~Murcielago() {}
+	void mueve(float t) { objetomovil::mueve(t); if (velocidad.y < -5.0)velocidad.y = -5.0f; }
+	void ataca();
 };
 
