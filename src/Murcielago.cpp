@@ -2,20 +2,18 @@
 
 
 
-Murcielago::Murcielago() :Enemigos(0, 0, "imagenes/Murcielago_derecha.png", 3)
+Murcielago::Murcielago() :Enemigos(0, 0, "imagenes/Eagle.png", 4)
 {
-	vida = 1000;
-	ataque = 3;
-	aceleracion.x = aceleracion.y = 0;
-	velocidad.x = 11;
+	velocidad.x = 3.0f;
 }
-void Murcielago::vuela() {
-	aceleracion = (0, 0);
-
-}//no le afecta la gravedad
-void Murcielago::mueve(hombre& h) {
-	vector2D dirmov = h.GetPos() - this->posicion;				//obtiene la dirección que debe seguir para perseguir al hombre
-	dirmov = dirmov.unitario() * (this->GetVel()).modulo();		//Le aplica el modulo de su velocidad inicial
-
-
+Murcielago::Murcielago(float x, float y):Enemigos(x, y, "imagenes/Eagle.png", 4)
+{
+	velocidad.x = 3.0f;
+}
+Murcielago::Murcielago(vector2D a): Enemigos(a, "imagenes/Eagle.png", 4)
+{
+	velocidad.x = 3.0f;
+}
+void Murcielago::ataca()
+{
 }
