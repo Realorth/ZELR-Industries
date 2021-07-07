@@ -31,6 +31,7 @@ public:
 	void AumentaAtaque() { ataque += 1; }
 	void AumentaArmadura() { armadura += 1; }
 	void AumentarAtaqueEs() { ataqueEspecial += 1; }
+	void DisminuirAtaqueEs() { ataqueEspecial -= 1; }
 	void mueve(float t) { objetomovil::mueve(t); 
 	if (this->velocidad.y < -5) velocidad.y = -5;
 	}
