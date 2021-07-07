@@ -259,17 +259,14 @@ void Mundo::tecla(unsigned char key)
 			
 		break;
 	case ' ':
-				{
+		{
 		if (EleccionPersonaje == 0)
-			disparo1 = new bala();
+			disparo1 = new bala(personaje->GetPos(), personaje->GetPos());
 		else if (EleccionPersonaje == 1)
-			disparo1 = new flecha();
+			disparo1 = new flecha(personaje->GetPos(), personaje->GetPos());
 		else if (EleccionPersonaje == 2)
-			disparo1 = new Magia();
-		
-		vector2D pos = personaje->GetPos();
-		disparo1->SetPos(pos.x, pos.y);
-		disparo1->SetOrigen(pos.x, pos.y);
+			disparo1 = new Magia(personaje->GetPos(), personaje->GetPos());
+
 		if (sentidoHombre)
 			disparo1->SetAcel(9.8, 0);//Disparo hacia la derecha
 		else
