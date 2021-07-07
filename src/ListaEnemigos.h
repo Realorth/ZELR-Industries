@@ -1,7 +1,8 @@
 #pragma once
 #include "Enemigos.h"
 #include "Interaccion.h"
-#include "hombre.h"
+#include "disparo.h"
+
 #define MAX_ENEMIGOS 100
 
 class ListaEnemigos
@@ -14,14 +15,14 @@ public:
 	ListaEnemigos();//Constructor sin argumentos
 	virtual ~ListaEnemigos();
 	bool agregar(Enemigos* e);//Argumento la direccion del enemigo
-	void dibuja();
-	void mueve();																	//ojo a este
+	void dibuja();	
+	void mueve(float t);															//ojo a este
 	void destruirContenido();
 	void eliminar(int index);
 	void eliminar(Enemigos* e);
-	Enemigos* colision(hombre& h);
+	Enemigos* colision(disparo& d);
 	Enemigos* operator [](int i);
 	int getNumero() { return numero; }
-
+	void rebote(std::vector<pared*> d);
 
 };
