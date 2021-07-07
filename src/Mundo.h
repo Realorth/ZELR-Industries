@@ -27,6 +27,7 @@
 #include "LlaveFin.h"
 
 #include "PerroVil.h"
+#include "AlcolitoOscuro.h"
 #include"ListaEnemigos.h"
 class Mundo
 {
