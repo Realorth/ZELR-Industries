@@ -12,29 +12,46 @@ disparo::disparo() :objetomovil(), textura("imagenes/disparo.png")
 	textura.setPos(posicion.x, posicion.y);
 	textura.setCenter(posicion.x, posicion.y);
 }
-
 disparo::disparo(float x, float y, const char* b) : objetomovil(x, y), textura(b)
 {
-	if (!strcmp(b, "imagenes/AtaqueBolaFuego.png")) textura.setSize(2.5f, 2.5f);//Mas grande
-	else textura.setSize(1.5f, 1.5f);
+	if (!strcmp(b, "imagenes/AtaqueBolaFuego.png")) {
+		textura.setSize(2.5f, 2.5f);//Mas grande
+		textura.setCenter(1.25, 1.25);
+	}
+	else { 
+		textura.setSize(1.5f, 1.5f); 
+		textura.setCenter(0.75, 0.75);
+	}
 	textura.setPos(posicion.x, posicion.y);
-	textura.setCenter(posicion.x, posicion.y);
+	
 }
 
 disparo::disparo(vector2D a, const char* b) : objetomovil(a), textura(b)
 {
-	if (!strcmp(b, "imagenes/AtaqueBolaFuego.png")) textura.setSize(2.5f, 2.5f);//Mas grande
-	else textura.setSize(1.5f, 1.5f);
+	if (!strcmp(b, "imagenes/AtaqueBolaFuego.png")) {
+		textura.setSize(2.5f, 2.5f);//Mas grande
+		textura.setCenter(1.25, 1.25);
+	}
+	else {
+		textura.setSize(1.5f, 1.5f);
+		textura.setCenter(0.75, 0.75);
+	}
 	textura.setPos(posicion.x, posicion.y);
-	textura.setCenter(posicion.x, posicion.y);
+
 }
 
 disparo::disparo(vector2D a, vector2D origen, const char* b) : objetomovil(a), origen(origen),textura(b)
 {
-	if (!strcmp(b, "imagenes/AtaqueBolaFuego.png")) textura.setSize(2.5f, 2.5f);//Mas grande
-	else textura.setSize(1.5f, 1.5f);
+	if (!strcmp(b, "imagenes/AtaqueBolaFuego.png")) {
+		textura.setSize(2.5f, 2.5f);//Mas grande
+		textura.setCenter(1.25, 1.25);
+	}
+	else {
+		textura.setSize(1.5f, 1.5f);
+		textura.setCenter(0.75, 0.75);
+	}
 	textura.setPos(posicion.x, posicion.y);
-	textura.setCenter(posicion.x, posicion.y);
+
 }
 
 
@@ -44,10 +61,18 @@ disparo::~disparo()
 
 void disparo::dibuja()
 {
-	glPushMatrix();
-	glTranslatef(posicion.x, posicion.y+0.3, 0);
+	textura.setPos(posicion.x, posicion.y + 0.8);
+	if (aceleracion.x < 0)
+		textura.flip(true, false);
 	textura.draw();
-	glPopMatrix();
+	/*
+	// Lo siguiente sirve para seguir el punto 
+	// de interaccion
+	glPushMatrix();
+	glTranslatef(posicion.x, posicion.y+0.8, 0);
+	glutSolidCube(0.3);
+	glPopMatrix();*/
+
 }
 
 
