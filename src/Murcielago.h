@@ -12,7 +12,6 @@ public:
 	Murcielago(vector2D a);
 	virtual ~Murcielago(){}
 
-	void mueve(float t) { objetomovil::mueve(t); if (velocidad.y < -5.0)velocidad.y = -5.0f; }
-	void ataca();
+	void mueve(float t) { objetomovil::mueve(t); if (velocidad.y < -5.0)velocidad.y = -5.0f; 
 };
 
