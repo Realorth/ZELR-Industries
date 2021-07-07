@@ -21,6 +21,7 @@ Mundo:: ~ Mundo()
 	Fondo.destruirContenido();
 	Plataformas.destruirContenido();
 	Suelos.destruirContenido();
+	WolfPack.destruirContenido();
 }
 
 void Mundo::destruirMapa() {
@@ -32,10 +33,10 @@ void Mundo::destruirMapa() {
 	listaBFuego.destruirContenido();
 	listaCoins.destruirContenido();
 	listaCorazones.destruirContenido();
+	WolfPack.destruirContenido();
 	x_ojo = 9.5f;
-	personaje->SetPos(x_ojo, 0.1f);
-	personaje->SetAcel(0,-9.81);
-	wolfy.SetPos(0, 9);														//---------------------
+	personaje->SetPos(x_ojo, 1.0f);
+	personaje->SetAcel(0, -9.81f);													//---------------------
 }
 
 void Mundo::setMapa(int l)
@@ -61,14 +62,7 @@ void Mundo::inicializa()
 	personaje->SetAcel(0, -9.81);
 	personaje->Setvida(5);
 	personaje->Setataque(1);
-	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	wolfy.SetPos(140.5f, 2.0f);								//es irrelevante
-	wolfy.SetVel(1, 0);
-	wolfy.SetAcel(0, -9.81);
-	wolfy.SetVida(2);
-	wolfy.SetAtaque(1);
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 	fin = false;
 	ncoin = 0;//Reestablecer a 0 cada vez que se inicializa el mapa
 	
@@ -92,13 +86,13 @@ void Mundo::dibuja()
 	Fondo.dibuja();
 	Plataformas.dibuja();
 	disparos.dibuja();
-
+	
 	//Se dibuja las listas de bonus
 	listaCoins.dibuja();
 	listaArmaduras.dibuja();
 	listaCorazones.dibuja();
 	listaBFuego.dibuja();
-
+	WolfPack.dibuja();
 	//Cantidad de vidas
 	ETSIDI::setTextColor(1, 0, 0);
 	ETSIDI::setFont("fuentes/Marlboro.ttf", 16);
@@ -127,7 +121,7 @@ void Mundo::dibuja()
 	ETSIDI::printxy("Ataque Especial", -5+ x_ojo, 17);
 	ETSIDI::printxy(ataqueHombre.c_str(), 0 + x_ojo, 17);
 	
-	wolfy.dibuja();
+
 }
 
 void Mundo::mueve()
@@ -135,9 +129,11 @@ void Mundo::mueve()
 	disparos.mueve(0.015f);
 	personaje->mueve(0.025f);
 	
-	wolfy.mueve(0.025f);
-	wolfy.reacciona();
-	wolfy.gira();
+	WolfPack.mueve(0.025f);
+	WolfPack.MuerteCaida();
+
+	WolfPack.rebote(Suelos.getSuelo());
+	WolfPack.rebote(Plataformas.getPlataforma());
 
 	//Interaccion de hombre-llaveFin
 	if (Interaccion::colision(*personaje, llave)) {
@@ -201,13 +197,7 @@ void Mundo::mueve()
 
 	Interaccion::rebote(*personaje, Suelos.getSuelo());
 	Interaccion::rebote(*personaje, Plataformas.getPlataforma());
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	Interaccion::rebote(wolfy, Suelos.getSuelo());
-	Interaccion::rebote(wolfy, Plataformas.getPlataforma());
-	Interaccion::proximidad(*personaje, wolfy);
-	Interaccion::colision(*personaje, wolfy);
-	/*ListaPerros::reaccion(hombre & h);
-	ListaPerros::patrulla(pared & p);*/
+
 
 }
 
@@ -371,6 +361,7 @@ void Mundo::Genera()
 		float x = -longitud;
 		//	std::vector<std::string> mapeo;//guarda todo el mapa
 		std::string aux;
+		PerroVil* aux_perro;
 		while (a.good()) {
 
 			char m;
@@ -428,6 +419,12 @@ void Mundo::Genera()
 						else {
 							x += longitud;
 						}
+						break;
+					case'w':
+						aux_perro = new PerroVil();
+						aux_perro->SetPos(x, y);
+						WolfPack.agregar(aux_perro);
+						x += longitud;
 						break;
 					case'/':
 						altura--;
