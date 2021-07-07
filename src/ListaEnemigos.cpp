@@ -2,12 +2,12 @@
 
 ListaEnemigos::ListaEnemigos()
 {
-	numero = 0;//Se vacía la lista
+	numero = 0;//Se vacÃ­a la lista
 	for (int i = 0; i < MAX_ENEMIGOS; i++)
 		lista[i] = 0;//limpia todos los punteros de la lista
 }
 
-ListaEnemigos::~ListaEnemigos(){}
+ListaEnemigos::~ListaEnemigos() {}
 
 bool ListaEnemigos::agregar(Enemigos* e)
 {
@@ -29,6 +29,13 @@ void ListaEnemigos::dibuja()
 {
 	for (int i = 0; i < numero; i++)
 		lista[i]->dibuja();//Se accede al metodo mediante flecha, porque es un puntero
+}
+
+void ListaEnemigos::mueve(float t)
+{
+	for (int i = 0; i < numero; i++) 
+		lista[i]->mueve(t);
+	
 }
 
 void ListaEnemigos::destruirContenido()
@@ -68,12 +75,18 @@ Enemigos* ListaEnemigos::operator[](int i)
 	return lista[i];
 }
 
-Enemigos* ListaEnemigos::colision(hombre& h)				// supone que debe ser una interacción de hombre, dado que es el unico que se modificaría?
+void ListaEnemigos::rebote(std::vector<pared*> d)
+{
+	for (int i = 0; i < numero; i++)
+		Interaccion::rebote(*lista[i], d);
+}
+
+Enemigos* ListaEnemigos::colision(disparo& d)				// supone que debe ser una interacciÃ³n de hombre, dado que es el unico que se modificarÃ­a?
 {
 	for (int i = 0; i < numero; i++)
 	{
-		if ((Interaccion::colision(h, *lista[i])))
-			return lista[i];
+		//if ((Interaccion::colision(d, *lista[i])))
+			//return lista[i];
 	}
-	return 0; //no hay colisión
+	return 0; //no hay colisiÃ³n
 }
