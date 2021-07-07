@@ -1,23 +1,37 @@
 #include "Enemigos.h"
 
 
-Enemigos::Enemigos() :objetomovil(),tamano_secuencia(0) ,sprite_enemigo{" ",0}
+Enemigos::Enemigos() :objetomovil(),tamano_secuencia(0) ,sprite_enemigo(" ",0)		//----------------cambiados los corchetes por par√©ntesis, lo mismo en las siguientes 2
 {
 	sprite_enemigo.setSize(3, 2.5);
 	sprite_enemigo.setCenter(posicion.x, posicion.y);
 	aceleracion.y = -9.81f;
 }
 
-Enemigos::Enemigos(float x, float y, const char* b, int tamano_secuencia):objetomovil(x,y), tamano_secuencia(tamano_secuencia), sprite_enemigo{ b,tamano_secuencia }
-{
-	sprite_enemigo.setSize(3, 2.5);
-	sprite_enemigo.setCenter(posicion.x, posicion.y);
-	aceleracion.y = -9.81f;
-}
-
-Enemigos::Enemigos(vector2D a, std::string b, int tamano_secuencia): objetomovil(a), tamano_secuencia(tamano_secuencia), sprite_enemigo{ b.c_str(),tamano_secuencia }
+Enemigos::Enemigos(float x, float y, const char* b, int tamano_secuencia):objetomovil(x,y), tamano_secuencia(tamano_secuencia), sprite_enemigo( b,tamano_secuencia )//--------
 {
 	sprite_enemigo.setSize(2.5, 2.5);
+	sprite_enemigo.setCenter(posicion.x, posicion.y);
+	aceleracion.y = -9.81f;
+}
+
+Enemigos::Enemigos(vector2D a, std::string b, int tamano_secuencia): objetomovil(a), tamano_secuencia(tamano_secuencia), sprite_enemigo(b.c_str(),tamano_secuencia)//--------
+{
+	sprite_enemigo.setSize(2.5, 2.5);
+	sprite_enemigo.setCenter(posicion.x, posicion.y);
+	aceleracion.y = -9.81f;
+}
+//------------------------------------------------------------------------------------------------------------------------------------------------------
+Enemigos::Enemigos(vector2D pos, vector2D tam, int r, int hp, int armor, int atk, float vatk, const char* b, int n_secuencias)
+	:objetomovil(pos), sprite_enemigo(b, tamano_secuencia)
+{
+	tamano_secuencia = n_secuencias;
+	velataque = vatk;
+	ataque = atk;
+	armadura = armor;
+	vida = hp;
+	rango = r;
+	sprite_enemigo.setSize(tam.x, tam.y);
 	sprite_enemigo.setCenter(posicion.x, posicion.y);
 	aceleracion.y = -9.81f;
 }
@@ -29,7 +43,7 @@ Enemigos::~Enemigos()
 
 void Enemigos::dibuja()
 {
-	// TODO: Agregar aquÌ el cÛdigo de implementaciÛn.
+	// TODO: Agregar aqu√≠ el c√≥digo de implementaci√≥n.
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	glColor3f(1.0f, 0.0f, 0.0f);
@@ -45,8 +59,3 @@ void Enemigos::dibuja()
 	glPopMatrix();
 }
 
-bool Enemigos::ataca()
-{
-
-    return false;
-}
