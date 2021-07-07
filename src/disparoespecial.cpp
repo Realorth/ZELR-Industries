@@ -6,9 +6,32 @@ disparoespecial::disparoespecial():disparo(),AtaqueBFuego("imagenes/AtaqueBolaFu
 {
 	aceleracion.x = 9.8;
 	aceleracion.y = 0;
-	AtaqueBFuego.setCenter(0.3f, 0.5f);
+	AtaqueBFuego.setCenter(posicion.x, posicion.y);
+	AtaqueBFuego.setPos(posicion.x, posicion.y);
 	AtaqueBFuego.setSize(2.5f, 2.5f);
+	
 
+}
+disparoespecial::disparoespecial(float x, float y) :disparo(x,y), AtaqueBFuego("imagenes/AtaqueBolaFuego.png")
+{
+	// En el constructor de bonus se inicializa la posicion
+	AtaqueBFuego.setCenter(posicion.x, posicion.y);
+	AtaqueBFuego.setPos(posicion.x, posicion.y);
+	AtaqueBFuego.setSize(2.5f, 2.5f);
+}
+disparoespecial::disparoespecial(vector2D a) :disparo(a), AtaqueBFuego("imagenes/AtaqueBolaFuego.png")
+{
+	// En el constructor de bonus se inicializa la posicion
+	AtaqueBFuego.setCenter(posicion.x, posicion.y);
+	AtaqueBFuego.setPos(posicion.x, posicion.y);
+	AtaqueBFuego.setSize(2.5f, 2.5f);
+}
+disparoespecial::disparoespecial(vector2D a, vector2D origen):disparo(a,origen), AtaqueBFuego("imagenes/AtaqueBolaFuego.png")
+{
+	// En el constructor de bonus se inicializa la posicion
+	AtaqueBFuego.setCenter(posicion.x, posicion.y);
+	AtaqueBFuego.setPos(posicion.x, posicion.y);
+	AtaqueBFuego.setSize(2.5f, 2.5f);
 }
 disparoespecial::~disparoespecial()
 {}
