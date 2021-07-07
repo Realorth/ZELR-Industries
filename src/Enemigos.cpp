@@ -44,12 +44,13 @@ Enemigos::~Enemigos()
 
 void Enemigos::dibuja()
 {
-	// TODO: Agregar aquí el código de implementación.
+	// TODO: Agregar aquÃ­ el cÃ³digo de implementaciÃ³n.
 	glPushMatrix();
 	glTranslatef(posicion.x, posicion.y, 0);
 	sprite_enemigo.setCenter(tamano.x/2, tamano.y/5);
-	glColor3f(1.0f, 0.0f, 0.0f);
-	glutSolidSphere(1, 20, 20);
+	sprite_enemigo.setSize(3.0f,3.0f);
+	//glColor3f(1.0f, 0.0f, 0.0f);
+	//glutSolidSphere(1, 20, 20);
 	//gestion de direccion y animacion 
 	if (velocidad.x > 0.01)sprite_enemigo.flip(false, false);
 	if (velocidad.x < -0.01)sprite_enemigo.flip(true, false);
