@@ -7,18 +7,16 @@ class bonus : public objetomovil
 {
 	
 public:
-	bonus();
-	bonus(float x , float y):objetomovil(x,y){}
-	bonus(vector2D a) :objetomovil(a) {}
+	bonus();//de serie carga la moneda
+	bonus(float x, float y, const char* b);
+	bonus(vector2D a, const char* b);
 	virtual ~bonus();
 
 	// funcion principal de dibujo del bonus
-	virtual void dibuja() = 0;//Función virtual pura
-	void SetPos(float x, float y) { posicion.x = x; posicion.y = y; }
-	void SetPos(vector2D a) { posicion = a; }
-
-
+	virtual void dibuja();
+	void SetTextura(const char* b) { textura = b ; }
+	
 protected:
-
-
+	ETSIDI::Sprite textura;//Textura que cambia segÃºn el tipo de bonus
+	
 };
