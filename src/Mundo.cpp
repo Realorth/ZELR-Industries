@@ -242,19 +242,20 @@ void Mundo::tecla(unsigned char key)
 	case 'd':
 	case 'D':
 		if (personaje->GetAtaqueEs() > 0) {
-			disparo1 = new disparoespecial();
-
-			disparo1->SetPos(personaje->GetPos());
-			disparo1->SetOrigen(personaje->GetPos().x, personaje->GetPos().y);
+			disparo1 = new disparoespecial(personaje->GetPos(),personaje->GetPos());
+			//disparo1->SetOrigen(personaje->GetPos().x, personaje->GetPos().y);
 			if (sentidoHombre)
 				disparo1->SetAcel(9.8, 0);//Disparo hacia la derecha
 			else
 				disparo1->SetAcel(-9.8, 0);//Disparo hacia la izquierda
 			if (disparos.agregar(disparo1))
+			{
 				ETSIDI::play("sonidos/BolaFuego.wav");
-
-			personaje->DisminuirAtaqueEs();
-		}
+				personaje->DisminuirAtaqueEs();
+			}
+			else delete disparo1;
+			
+			}
 			
 		break;
 	case ' ':
