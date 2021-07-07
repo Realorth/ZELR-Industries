@@ -42,6 +42,39 @@ void Interaccion::colision(hombre& h, pared p)
 }
 
 
+bool Interaccion::Borde(Enemigos& e, std::vector<pared*> d)
+{	
+	Enemigos aux(e);
+
+	return false;
+}
+void Interaccion::rebote(Enemigos& e, std::vector<pared*> d)
+{
+	for (auto i : d) 
+		colision(e, *i);
+	
+}
+bool Interaccion::colision(Enemigos& e, pared p)
+{
+	vector2D dir;
+	float dif = p.distancia(e.GetPos(), &dir) - 0.1f;
+	if (dif <= 0.0f)
+	{
+		//vector2D v_inicial = h.velocidad;
+		e.SetVel(e.GetVel().x, 0);
+		e.SetPos(e.GetPos() - dir * dif);
+		e.SetPos(e.GetPos().x, e.GetPos().y += 0.001f);
+		return true;
+	}
+	return false;
+
+}
+void Interaccion::rebote(std::vector<Enemigos*> a, std::vector<pared*> d)
+{
+	for (auto i : a)
+		rebote(*i, d);
+
+}
 
 void Interaccion::rebote(hombre& h, std::vector<pared*> d)
 {
