@@ -5,6 +5,7 @@
 #include "vector2D.h"
 #include <iostream>
 #include <fstream>
+#include ""
 Mundo::Mundo()
 {
 }
@@ -34,6 +35,7 @@ void Mundo::destruirMapa() {
 	x_ojo = 9.5f;
 	personaje->SetPos(x_ojo, 0.1f);
 	personaje->SetAcel(0,-9.81);
+	wolfy.SetPos(0, 9);														//---------------------
 }
 
 void Mundo::setMapa(int l)
@@ -55,10 +57,17 @@ void Mundo::inicializa()
 		personaje = new mago();
 	
 	personaje->SetAltura(1.8f);
-	personaje->SetPos(9.5f, personaje->GetAltura());
+	//personaje->SetPos(9.5f, personaje->GetAltura());					IRRELEVANTE
 	personaje->SetAcel(0, -9.81);
 	personaje->Setvida(5);
 	personaje->Setataque(1);
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	wolfy.SetPos(140.5f, 2.0f);								//es irrelevante
+	wolfy.SetVel(1, 0);
+	wolfy.SetAcel(0, -9.81);
+	wolfy.SetVida(2);
+	wolfy.SetAtaque(1);
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	fin = false;
 	ncoin = 0;//Reestablecer a 0 cada vez que se inicializa el mapa
@@ -117,12 +126,18 @@ void Mundo::dibuja()
 	std::string ataqueHombre = std::to_string(personaje->GetAtaqueEs());
 	ETSIDI::printxy("Ataque Especial", -5+ x_ojo, 17);
 	ETSIDI::printxy(ataqueHombre.c_str(), 0 + x_ojo, 17);
+	
+	wolfy.dibuja();
 }
 
 void Mundo::mueve()
 {
 	disparos.mueve(0.015f);
 	personaje->mueve(0.025f);
+	
+	wolfy.mueve(0.025f);
+	wolfy.reacciona();
+	wolfy.gira();
 
 	//Interaccion de hombre-llaveFin
 	if (Interaccion::colision(*personaje, llave)) {
@@ -186,8 +201,13 @@ void Mundo::mueve()
 
 	Interaccion::rebote(*personaje, Suelos.getSuelo());
 	Interaccion::rebote(*personaje, Plataformas.getPlataforma());
-
-	
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	Interaccion::rebote(wolfy, Suelos.getSuelo());
+	Interaccion::rebote(wolfy, Plataformas.getPlataforma());
+	Interaccion::proximidad(*personaje, wolfy);
+	Interaccion::colision(*personaje, wolfy);
+	/*ListaPerros::reaccion(hombre & h);
+	ListaPerros::patrulla(pared & p);*/
 
 }
 
