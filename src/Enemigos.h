@@ -8,9 +8,10 @@ protected:
 	ETSIDI::SpriteSequence sprite_enemigo;
 	int tamano_secuencia = 0;
 	vector2D tamano;
+	//tamano.x ==ancho
+	//tamano.y= altura
 
-
-	float rango;	//distancia a partir de la cual 
+	float rango=0;	//distancia a partir de la cual 
 	// reaccionan ante una entidad que atacaria
 	int vida = 1;
 	int ataque = 1;
@@ -19,12 +20,9 @@ protected:
 
 public:
 	Enemigos();
-	Enemigos(float x, float y,const char*,int tamano_secuencia);
 	Enemigos(vector2D a, std::string, int tamano_secuencia);
-	Enemigos(vector2D a, const char* b, int tamano_secuencia);
-
-	Enemigos(vector2D pos, vector2D tam, float r, int hp, int armor, int atk, float vatk, const char* b, int n_secuencias);
-	
+	Enemigos(vector2D pos, const char* b, int n_secuencias, vector2D tam = {3,2.5});
+	Enemigos(float x, float y, const char* b, int n_secuencias, float wide=3, float height=2.5);
 	virtual ~Enemigos();
 	virtual void dibuja();
 	virtual void ataca(); 

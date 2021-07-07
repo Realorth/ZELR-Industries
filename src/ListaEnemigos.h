@@ -2,6 +2,7 @@
 #include "Enemigos.h"
 #include "Interaccion.h"
 #include "disparo.h"
+#include"PerroVil.h"
 
 #define MAX_ENEMIGOS 100
 
@@ -24,5 +25,5 @@ public:
 	Enemigos* operator [](int i);
 	int getNumero() { return numero; }
 	void rebote(std::vector<pared*> d);
-
+	void MuerteCaida();
 };

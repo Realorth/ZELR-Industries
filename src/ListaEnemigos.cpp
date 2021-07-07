@@ -2,7 +2,7 @@
 
 ListaEnemigos::ListaEnemigos()
 {
-	numero = 0;//Se vac√≠a la lista
+	numero = 0;//Se vacÌa la lista
 	for (int i = 0; i < MAX_ENEMIGOS; i++)
 		lista[i] = 0;//limpia todos los punteros de la lista
 }
@@ -81,12 +81,25 @@ void ListaEnemigos::rebote(std::vector<pared*> d)
 		Interaccion::rebote(*lista[i], d);
 }
 
-Enemigos* ListaEnemigos::colision(disparo& d)				// supone que debe ser una interacci√≥n de hombre, dado que es el unico que se modificar√≠a?
+void ListaEnemigos::MuerteCaida()
+{
+	int quien=0xFFFF;
+
+	for (int i = 0; i < numero; i++) {
+		if (lista[i]->GetPos().y < -3)
+			quien = i;
+	}
+
+	if(quien!=0xFFFF)
+		eliminar(quien);
+}
+
+Enemigos* ListaEnemigos::colision(disparo& d)				// supone que debe ser una interacciÛn de hombre, dado que es el unico que se modificarÌa?
 {
 	for (int i = 0; i < numero; i++)
 	{
 		//if ((Interaccion::colision(d, *lista[i])))
 			//return lista[i];
 	}
-	return 0; //no hay colisi√≥n
+	return 0; //no hay colisiÛn
 }
