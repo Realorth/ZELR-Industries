@@ -6,10 +6,11 @@
 
 class disparoespecial : public disparo
 {
+protected:
+	ETSIDI::Sprite AtaqueBFuego;
 public:
 	disparoespecial();
 	~disparoespecial();
 	void dibuja();
 	
 };
-
