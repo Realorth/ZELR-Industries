@@ -12,5 +12,5 @@ void PerroVil::gira()
 void PerroVil::ataca() {}
 void PerroVil::reacciona() 
 {
-	aceleracion.x = 0.002 + aceleracion.x * 1.2;			//Empieza a patrullar cada vez más rápido
+	aceleracion.x = 0.000002 + aceleracion.x * 1.2;			//Empieza a patrullar cada vez más rápido
 }
