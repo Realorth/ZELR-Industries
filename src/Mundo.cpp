@@ -362,6 +362,7 @@ void Mundo::Genera()
 		//	std::vector<std::string> mapeo;//guarda todo el mapa
 		std::string aux;
 		PerroVil* aux_perro;
+		AlcolitoOscuro* aux_alco;
 		while (a.good()) {
 
 			char m;
@@ -424,6 +425,12 @@ void Mundo::Genera()
 						aux_perro = new PerroVil();
 						aux_perro->SetPos(x, y);
 						WolfPack.agregar(aux_perro);
+						x += longitud;
+						break;
+					case'l':
+						aux_alco = new AcolitoOscuro();
+						aux_alco->SetPos(x, y);
+						WolfPack.agregar(aux_alco);
 						x += longitud;
 						break;
 					case'/':
