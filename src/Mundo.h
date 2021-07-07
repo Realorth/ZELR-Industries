@@ -25,7 +25,7 @@
 #include "ListaCorazones.h"
 #include "ListaBolaFuego.h"
 #include "LlaveFin.h"
-#include "ListaPerros.h"
+
 #include "PerroVil.h"
 #include"ListaEnemigos.h"
 class Mundo
