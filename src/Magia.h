@@ -8,8 +8,6 @@ public:
 	Magia(vector2D);
 	Magia(vector2D, vector2D);
 	virtual ~Magia();
-	void dibuja();
-protected:
-	ETSIDI::Sprite SMagia;
 };
+
 
