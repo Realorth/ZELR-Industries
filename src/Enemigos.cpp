@@ -1,28 +1,28 @@
 #include "Enemigos.h"
 
 
-Enemigos::Enemigos() :objetomovil(),tamano_secuencia(0) ,sprite_enemigo(" ",0)		//----------------cambiados los corchetes por paréntesis, lo mismo en las siguientes 2
+Enemigos::Enemigos() :objetomovil(),tamano_secuencia(0) ,sprite_enemigo{" ",0}
 {
 	sprite_enemigo.setSize(3, 2.5);
 	sprite_enemigo.setCenter(posicion.x, posicion.y);
 	aceleracion.y = -9.81f;
 }
 
-Enemigos::Enemigos(float x, float y, const char* b, int tamano_secuencia):objetomovil(x,y), tamano_secuencia(tamano_secuencia), sprite_enemigo( b,tamano_secuencia )//--------
+Enemigos::Enemigos(float x, float y, const char* b, int tamano_secuencia):objetomovil(x,y), tamano_secuencia(tamano_secuencia), sprite_enemigo{ b,tamano_secuencia }
+{
+	sprite_enemigo.setSize(3, 2.5);
+	sprite_enemigo.setCenter(posicion.x, posicion.y);
+	aceleracion.y = -9.81f;
+}
+
+Enemigos::Enemigos(vector2D a, std::string b, int tamano_secuencia): objetomovil(a), tamano_secuencia(tamano_secuencia), sprite_enemigo{ b.c_str(),tamano_secuencia }
 {
 	sprite_enemigo.setSize(2.5, 2.5);
 	sprite_enemigo.setCenter(posicion.x, posicion.y);
 	aceleracion.y = -9.81f;
 }
 
-Enemigos::Enemigos(vector2D a, std::string b, int tamano_secuencia): objetomovil(a), tamano_secuencia(tamano_secuencia), sprite_enemigo(b.c_str(),tamano_secuencia)//--------
-{
-	sprite_enemigo.setSize(2.5, 2.5);
-	sprite_enemigo.setCenter(posicion.x, posicion.y);
-	aceleracion.y = -9.81f;
-}
-//------------------------------------------------------------------------------------------------------------------------------------------------------
-Enemigos::Enemigos(vector2D pos, vector2D tam, int r, int hp, int armor, int atk, float vatk, const char* b, int n_secuencias)
+Enemigos::Enemigos(vector2D pos, vector2D tam, float r, int hp, int armor, int atk, float vatk, const char* b, int n_secuencias)
 	:objetomovil(pos), sprite_enemigo(b, tamano_secuencia)
 {
 	tamano_secuencia = n_secuencias;
@@ -57,5 +57,11 @@ void Enemigos::dibuja()
 		sprite_enemigo.setState(1, false);
 	sprite_enemigo.draw();
 	glPopMatrix();
+}
+
+void Enemigos::ataca()
+{
+
+	return;
 }
 
