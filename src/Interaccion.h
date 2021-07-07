@@ -8,8 +8,8 @@
 #include "BonusCorazon.h"
 #include "BonusBolaFuego.h"
 #include "coin.h"
-#include "Enemigos.h"
-
+#include"Enemigos.h"
+#include"ListaEnemigos.h"
 class Interaccion
 {
 public:
@@ -17,27 +17,27 @@ public:
 
 	static bool colision(disparo d, pared p);
 
-	static void rebote(hombre& h,std::vector<pared*> p);
-	static void colision_border(hombre& h, std::vector<pared*> p);
+	static void rebote(hombre& h,std::vector<pared*> d);
+	
 
-
-  
+	static void rebote(Enemigos& e, std::vector<pared*> d);
+	static bool colision(Enemigos& e, pared p);
+	//static bool Borde(Enemigos&e, std::vector<pared*> d);
+	
 	static void colision(hombre& h, pared p);
+//	static bool borde(Enemigos& a, pared p);
 	//Cosas  nuevas añadidas
 	//static bool colision(hombre h, bonus b);
 	//static bool colision(hombre h, BonusArmadura b);
 	//static bool colision(hombre h, BonusCorazon b);
 	//static bool colision(hombre h, bonusBolaFuego b);
 	static bool colision(hombre h, bonus& b);
+	static bool colision(hombre h, coin c);
 	static bool muertecaida(hombre h);
-	
-	static void rebote(Enemigos& e, std::vector<pared*> p);
-	static bool colision(Enemigos& e, pared p);
-	static bool Borde(Enemigos& e, std::vector<pared*> p);
-	static void rebote(std::vector<Enemigos*> e, std::vector<pared*> p);
-	
+
 	static bool proximidad(hombre& h, Enemigos& e);
 	static bool colision(hombre& h, Enemigos& e);
-	static bool deteccion(hombre& h, Enemigos& e);						//para el acólito y las balas
+	static bool deteccion(hombre& h, Enemigos& e);
+	bool colision(objetomovil& e, pared p);
 };
 
