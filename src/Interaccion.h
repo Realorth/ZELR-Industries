@@ -8,6 +8,7 @@
 #include "BonusCorazon.h"
 #include "BonusBolaFuego.h"
 #include "coin.h"
+#include "Enemigos.h"
 
 class Interaccion
 {
@@ -16,7 +17,7 @@ public:
 
 	static bool colision(disparo d, pared p);
 
-	static void rebote(hombre& h,std::vector<pared*> d);
+	static void rebote(hombre& h,std::vector<pared*> p);
 	static void colision_border(hombre& h, std::vector<pared*> p);
 
 
@@ -31,9 +32,12 @@ public:
 	static bool colision(hombre h, coin c);
 	static bool muertecaida(hombre h);
 	
-	static void rebote(Enemigos& e, std::vector<pared*> d);
+	static void rebote(Enemigos& e, std::vector<pared*> p);
 	static bool colision(Enemigos& e, pared p);
-	static bool Borde(Enemigos&e, std::vector<pared*> d);
-	static void rebote(std::vector<Enemigos*> a, std::vector<pared*> d);
+	static bool Borde(Enemigos& e, std::vector<pared*> p);
+	static void rebote(std::vector<Enemigos*> e, std::vector<pared*> p);
+	
+	static bool proximidad(hombre& h, Enemigos& e);
+	static bool colision(hombre& h, Enemigos& e);
 };
 
