@@ -39,5 +39,6 @@ public:
 	
 	static bool proximidad(hombre& h, Enemigos& e);
 	static bool colision(hombre& h, Enemigos& e);
+	static bool deteccion(hombre& h, Enemigos& e);						//para el acólito y las balas
 };
 
