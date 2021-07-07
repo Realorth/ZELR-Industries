@@ -27,6 +27,7 @@
 #include "LlaveFin.h"
 #include "ListaPerros.h"
 #include "PerroVil.h"
+#include"ListaEnemigos.h"
 class Mundo
 {
 public:
@@ -68,9 +69,7 @@ private:
 
 	hombre* personaje;
 	disparo* disparo1;
-	PerroVil wolfy;
-	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	PerroVil* Wolfy;
+	ListaEnemigos WolfPack;
 
 	listadisparos disparos;
 
