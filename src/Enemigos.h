@@ -33,6 +33,7 @@ public:
 	virtual void reacciona() {}
 	void SetVida(int hp) { vida = hp; }
 	void SetAtaque(int atk) { ataque = atk; }
+	void GetVAtaque(float vatk) { velataque = vatk; }
 	void SetArmadura(int a) { armadura = a; }
 	int Getvida() { return vida; }
 	int GetAtaque() { return ataque; }
