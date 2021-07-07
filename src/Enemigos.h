@@ -37,6 +37,9 @@ public:
 	int Getvida() { return vida; }
 	int GetAtaque() { return ataque; }
 	int GetArmadura() { return armadura; }
+	vector2D GetTam() { return tamano; }
+	void SetTam(vector2D tam) { tamano = tam; }
+	void SetTam(float ancho, float alto) { tamano.x = ancho; tamano.y = alto; }
 	//------------------------------------------------------------------------------------------------------------------------------------------------------
 	
 };
