@@ -1,0 +1,47 @@
+//////////////////////////////////////////////////////////////////////////////////////
+Perro Vil:
+-	Se mueve a lo largo de la plataforma sobre la que se genera
+-	Al llegar un borde, se para, da media vuelta y reanuda la marcha hacia el otro extremo
+
+-	Al detectar al Personaje a una distancia menor que su rango de detección, aumenta progresivamente la aceleración, hasta que muere o se aleja el personaje.
+
+-	No ataca activamente, pero daña al contacto
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+Espectro: (el murciélago)
+
+-	Se mueve persiguiendo siempre al personaje. Atraviesa Paredes.
+	Es invulnerable al daño, hay que sortearlo
+	No reacciona ante la proximidad. No ataca. Daña al contactar
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+Acólito Oscuro
+
+-	No se mueve, solo evalua la posición del personaje y se gira para estar siempre mirándole.
+-	Su ataque es un dosparo como el del personaje (cada N On timer por una marca(atributo velataque) siguendo el siguiente esquema) para un disparo cada 2 segundos debería ser:
+
+ int velataque=85;
+... 
+void OnTimer(int value)
+{
+...
+if (velataque<4){
+	*AcolitoOscuro.Ataca();
+	velataque=85;
+	}
+velataque--
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////
+
+Extra:
+OrbeTóxico:
+	Comportamiento como las esferas del pang.
+	No atacan, no reaccionan a la presencia del personaje.
+	Si te tocan te quitan 3 puntos de vida/armadura
+	Habrá siempre un numero determinado de esferas. si alguna  es disparada o cae al vacío se destruye, entonces se genera otra en un punto determinado.
+
