@@ -5,9 +5,6 @@
 Interaccion::~Interaccion()
 {
 }
-
-
-
 bool Interaccion::colision(disparo d, pared p)
 {
 	vector2D pos =d. GetPos();
@@ -16,17 +13,8 @@ bool Interaccion::colision(disparo d, pared p)
 	
 	return false;
 }
-
-
 void Interaccion::colision(hombre& h, pared p)
 {
-	//Para que no se salga el hombre del mapa
-	if (h.GetPos().x < -3.5f)
-		h.posicion.x = -3.5f;
-	if (h.GetPos().x > 293)
-		h.posicion.x = 293;
-	
-	
 
 	vector2D dir;
 	float dif = p.distancia(h.posicion, &dir) -h.altura / 10;
@@ -37,29 +25,49 @@ void Interaccion::colision(hombre& h, pared p)
 		h.posicion = h.posicion - dir * dif;
 		h.posicion.y += 0.001f;
 	}
-
-
+}
+void Interaccion::rebote(hombre& h, std::vector<pared*> d)
+{
+	for (auto i : d)
+		colision(h, *i);
+	if (h.GetPos().x < -3.5)
+		h.SetPos(-3.5, h.GetPos().y);
+	if (h.GetPos().x > 293)
+		h.SetPos(293,h.GetPos().y);
 }
 
-
-bool Interaccion::Borde(Enemigos& e, std::vector<pared*> p)
-{	
+void Interaccion::rebote(Enemigos& e, std::vector<pared*> d)
+{
 	Enemigos aux(e);
 
-	return false;
-}
-void Interaccion::rebote(Enemigos& e, std::vector<pared*> d)		//alternativa
-{
-	for (auto i : d) 
+	aux.SetVel(0, 0);
+	int sentido = (e.GetVel().x > 0) ? 1 : -1;
+	aux.SetPos(e.GetPos().x + 3.0f * sentido, e.GetPos().y );
+	//aux.mueve(0.25);
+
+	for (auto i : d)
 		colision(e, *i);
+	for (auto i : d)
+		colision(aux, *i);
+
+	if (aux.GetPos().y < e.GetPos().y) {
+		e.SetVel(e.GetVel().x*(-1),e.GetVel().y);
+	}
+	
+
+	if (e.GetPos().x < -3.5) {
+		e.SetPos(-3.5, e.GetPos().y);
+		e.SetVel(e.GetVel().x * (-1), e.GetVel().y);
+	}
+		
+	if (e.GetPos().x > 293) {
+		e.SetPos(293, e.GetPos().y);
+		e.SetVel(e.GetVel().x * (-1), e.GetVel().y);
+	}
+	
+
 	
 }
-void Interaccion::rebote(std::vector<Enemigos*> e, std::vector<pared*> p)		//usada en mundo
-{
-	for (auto i : e)
-		rebote(*i, p);
-}
-
 bool Interaccion::colision(Enemigos& e, pared p)
 {
 	vector2D dir;
@@ -75,46 +83,27 @@ bool Interaccion::colision(Enemigos& e, pared p)
 	return false;
 
 }
-
-void Interaccion::rebote(hombre& h, std::vector<pared*> p)
-{
-	for (auto i : p) 
-		colision(h, *i);
-	/*if (h.GetPos().x < -3.5)									//del estado de ayer
-		h.SetPos(-3.5, h.GetPos().y);
-	if (h.GetPos().x > 293)
-		h.SetPos(293,h.GetPos().y);
-	//for (auto i : p) {
-	//	if(i!=p.front()&&i!=p.back())
-	//	colision(h, *i);
-	//	else
-	//	colision_border(h,p);
-	//}*/
-}
-
-void Interaccion::colision_border(hombre& h, std::vector<pared*> p){
-
-	auto margenSeguridad = 0.1f;
-	if (h.GetPos().x <= p.front()->GetLim1().x + margenSeguridad)
-		h.posicion.x = p.front()->GetLim1().x + 0.5f;
-	if (h.GetPos().x >= p.back()->GetLim2().x - margenSeguridad)
-		h.posicion.x = p.back()->GetLim2().x - 0.5f;
-}
-
-
 bool Interaccion::colision(hombre h, bonus& b)
 {
 	vector2D pos = h.GetPos(); //la posicion de la base del hombre
 	vector2D posBonus = b.GetPos();
 	pos.y += h.GetAltura() / 2.0f; //posicion del centro
 	float distancia = (posBonus - pos).modulo();
-	if (distancia < 1.5f)
+	if (distancia < 1.0f)
 		return true;
 	return false;
 }
+bool Interaccion::colision(hombre h, coin c)
+{
+	vector2D pos = h.GetPos(); //la posicion de la base del hombre
+	vector2D posMoneda = c.GetPos();
+	pos.y += h.GetAltura() / 2.0f; //posicion del centro
+	float distancia = (posMoneda - pos).modulo();
+	if (distancia < 1.0f)
+		return true;
+	return false;
 
-
-
+}
 bool Interaccion::muertecaida(hombre h)
 {
 	vector2D m = h.GetPos();
@@ -122,7 +111,6 @@ bool Interaccion::muertecaida(hombre h)
 		return true;
 	return false;
 }
-
 bool Interaccion::colision(objetomovil& e, pared p)
 {
 	vector2D dir;
@@ -137,26 +125,23 @@ bool Interaccion::colision(objetomovil& e, pared p)
 	}
 	return false;
 }
-
 bool Interaccion::colision(hombre& h, Enemigos& e)
 {
 	vector2D pos = h.GetPos(); //la posicion de la base del hombre
 	vector2D posEnemigo = e.GetPos();
 	pos.y += h.GetAltura() / 2.0f; //posicion del centro
 	float distancia = (posEnemigo - pos.y).modulo();
-	if (distancia < (e.GetTam()).modulo()/2+1.0f)
+	if (distancia < (e.GetTam()).modulo() / 2 + 1.0f)
 		return true;
 	return false;
 }
-
 bool Interaccion::proximidad(hombre& h, Enemigos& e) {
 	vector2D pos = h.GetPos() - e.GetPos();
 	if (pos.modulo() < e.GetRango()) return true;						//si el hombre está a rango
 	else return false;
 }
-
-bool Interaccion::deteccion(hombre& h, Enemigos& e) {   
+bool Interaccion::deteccion(hombre& h, Enemigos& e) {
 	vector2D pos = h.GetPos() - e.GetPos();
-	if (pos.x>0) return true;									//si el hombre está a la derecha
+	if (pos.x > 0) return true;									//si el hombre está a la derecha
 	else return false;
 }
