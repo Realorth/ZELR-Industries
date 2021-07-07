@@ -42,18 +42,20 @@ void Interaccion::rebote(Enemigos& e, std::vector<pared*> d)
 
 	aux.SetVel(0, 0);
 	int sentido = (e.GetVel().x > 0) ? 1 : -1;
-	aux.SetPos(e.GetPos().x + 3.0f * sentido, e.GetPos().y );
+	aux.SetPos(e.GetPos().x + 0.5f * sentido, e.GetPos().y );
 	//aux.mueve(0.25);
 
 	for (auto i : d)
 		colision(e, *i);
 	for (auto i : d)
 		colision(aux, *i);
-
-	if (aux.GetPos().y < e.GetPos().y) {
+		
+		
+	bool girar = (roundf((e.GetPos().y-aux.GetPos().y)*1000)>0);
+	if (girar/* aux.GetPos().y < e.GetPos().y*/) {
 		e.SetVel(e.GetVel().x*(-1),e.GetVel().y);
 	}
-	
+
 
 	if (e.GetPos().x < -3.5) {
 		e.SetPos(-3.5, e.GetPos().y);
@@ -64,6 +66,7 @@ void Interaccion::rebote(Enemigos& e, std::vector<pared*> d)
 		e.SetPos(293, e.GetPos().y);
 		e.SetVel(e.GetVel().x * (-1), e.GetVel().y);
 	}
+	
 	
 
 	
