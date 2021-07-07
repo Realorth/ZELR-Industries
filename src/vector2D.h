@@ -24,4 +24,5 @@ public:
 	vector2D operator+(float a);
 	vector2D operator-(float a);
 	void set(float x, float y) { this->x = x; this->y = y; }
+	void set(vector2D a) { this->x = a.x; this->y = a.y; }
 };
