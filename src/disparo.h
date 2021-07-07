@@ -8,6 +8,9 @@ class disparo : public objetomovil
 {
 public:
 	disparo();
+	disparo(float x, float y):objetomovil(x, y) {}
+	disparo(vector2D a) :objetomovil(a) {};
+	disparo(vector2D a,vector2D origen) :objetomovil(a),origen(origen) {};
 	virtual ~disparo();
 
 	virtual void dibuja();//Por sí existen balas especiales
