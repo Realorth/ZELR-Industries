@@ -1,32 +1,23 @@
 #include "BonusCorazon.h"
 #include "ETSIDI.h"
 
-BonusCorazon::BonusCorazon():S_Cor("imagenes/Heart.png"),bonus()
+BonusCorazon::BonusCorazon():bonus()
 {
-	S_Cor.setCenter(posicion.x, posicion.y);
-	S_Cor.setPos(posicion.x, posicion.y);
-	S_Cor.setSize(1.0f, 1.0f);
+	textura = "imagenes/Heart.png";
+
 }
 
-BonusCorazon::BonusCorazon(float x, float y):bonus(x,y),S_Cor("imagenes/Heart.png")
-{
-	S_Cor.setCenter(posicion.x, posicion.y);
-	S_Cor.setPos(posicion.x, posicion.y);
-	S_Cor.setSize(1.0f, 1.0f);
-}
-BonusCorazon::BonusCorazon(vector2D a):bonus(a), S_Cor("imagenes/Heart.png")
+BonusCorazon::BonusCorazon(float x, float y):bonus(x,y,"imagenes/Heart.png")
 {	
-	S_Cor.setCenter(posicion.x, posicion.y);
-	S_Cor.setPos(posicion.x, posicion.y);
-	S_Cor.setSize(1.0f, 1.0f);
+
+}
+BonusCorazon::BonusCorazon(vector2D a):bonus(a,"imagenes/Heart.png")
+{	
+
 }
 BonusCorazon::~BonusCorazon()
 {}
-void BonusCorazon::dibuja() {
-	glPushMatrix();
-	glTranslatef(posicion.x, posicion.y, 0);
-	S_Cor.draw();
-	glPopMatrix();
 
-}
+
+
 
