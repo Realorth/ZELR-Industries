@@ -29,7 +29,6 @@ public:
 	//static bool colision(hombre h, BonusCorazon b);
 	//static bool colision(hombre h, bonusBolaFuego b);
 	static bool colision(hombre h, bonus& b);
-	static bool colision(hombre h, coin c);
 	static bool muertecaida(hombre h);
 	
 	static void rebote(Enemigos& e, std::vector<pared*> p);
