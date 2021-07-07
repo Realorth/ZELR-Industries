@@ -14,6 +14,3 @@ Murcielago::Murcielago(vector2D a): Enemigos(a, "imagenes/Eagle.png", 4)
 {
 	velocidad.x = 3.0f;
 }
-void Murcielago::ataca()
-{
-}
