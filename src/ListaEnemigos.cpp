@@ -75,10 +75,25 @@ Enemigos* ListaEnemigos::operator[](int i)
 	return lista[i];
 }
 
-void ListaEnemigos::rebote(std::vector<pared*> d)
+
+
+void ListaEnemigos::colision(listadisparos& ld)
 {
-	for (int i = 0; i < numero; i++)
-		Interaccion::rebote(*lista[i], d);
+	float dano;
+	for (int i = 0; lista[i] != nullptr; i++)
+		if (dano=Interaccion::colision(lista[i], ld),dano)
+			lista[i]->DisminuyeVida(dano);
+
+	std::vector<int> indexs;
+		
+	for (int i = 0; lista[i] != nullptr; i++) {
+		if (lista[i]->Getvida() <= 0)
+			indexs.push_back(i);
+	}
+	
+	for (auto i : indexs) 
+		eliminar(i);
+
 }
 
 void ListaEnemigos::MuerteCaida()
@@ -94,12 +109,3 @@ void ListaEnemigos::MuerteCaida()
 		eliminar(quien);
 }
 
-Enemigos* ListaEnemigos::colision(disparo& d)				// supone que debe ser una interacción de hombre, dado que es el unico que se modificaría?
-{
-	for (int i = 0; i < numero; i++)
-	{
-		//if ((Interaccion::colision(d, *lista[i])))
-			//return lista[i];
-	}
-	return 0; //no hay colisión
-}

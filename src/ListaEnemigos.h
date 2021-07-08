@@ -11,7 +11,7 @@ class ListaEnemigos
 private:
 	Enemigos* lista[MAX_ENEMIGOS];					//vector de punteros a objetos tipo enemigo
 	int numero;//Lleva la cuenta de enemigos 
-
+	friend class Interaccion;
 public:
 	ListaEnemigos();//Constructor sin argumentos
 	virtual ~ListaEnemigos();
@@ -21,9 +21,10 @@ public:
 	void destruirContenido();
 	void eliminar(int index);
 	void eliminar(Enemigos* e);
-	Enemigos* colision(disparo& d);
+	//Enemigos* colision(disparo& d);
 	Enemigos* operator [](int i);
 	int getNumero() { return numero; }
-	void rebote(std::vector<pared*> d);
+	void colision(listadisparos&);
 	void MuerteCaida();
+	Enemigos** GetLista() { return lista; }
 };

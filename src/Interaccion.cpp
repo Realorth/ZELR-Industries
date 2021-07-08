@@ -1,6 +1,14 @@
 #include "Interaccion.h"
 #include <math.h>
 #include <iostream>
+#include<cstring>
+#include<string>
+#include<time.h>
+
+template<typename Base, typename T>
+inline bool instanceof(const T*) {
+	return std::is_base_of<Base, T>::value;
+}
 
 Interaccion::~Interaccion()
 {
@@ -86,6 +94,43 @@ bool Interaccion::colision(Enemigos& e, pared p)
 	return false;
 
 }
+void Interaccion::rebote(Enemigos** lista, std::vector<pared*> d)
+{
+	for (int i = 0; lista[i] != nullptr; i++)
+			Interaccion::rebote(*lista[i], d);
+
+}
+
+bool Interaccion::colision(Enemigos& e, disparo& d)
+{
+	if ((e.GetPos() - d.GetPos()).modulo() < 1.0f)
+		return true;
+	return false;
+}
+
+float Interaccion::colision(Enemigos* e, listadisparos& ld)
+{
+	int index=0xFFFFF;
+	float dano = 0;
+	for (int i = 0; ld.lista[i] != nullptr; i++) {
+		if(Interaccion::colision(*e, *ld.lista[i]))
+			index = i;
+	}
+	if (index != 0xFFFFF) {
+		if (!strcmp(ld[index]->GetNombre().c_str(), "Especial"))
+			dano = 2;
+		else
+			dano = 1;
+		ld.eliminar(index);
+		return dano;
+	}
+	
+	return dano;
+}
+
+
+
+
 bool Interaccion::colision(hombre h, bonus& b)
 {
 	vector2D pos = h.GetPos(); //la posicion de la base del hombre
@@ -130,14 +175,50 @@ bool Interaccion::colision(objetomovil& e, pared p)
 }
 bool Interaccion::colision(hombre& h, Enemigos& e)
 {
-	vector2D pos = h.GetPos(); //la posicion de la base del hombre
-	vector2D posEnemigo = e.GetPos();
-	pos.y += h.GetAltura() / 2.0f; //posicion del centro
-	float distancia = (posEnemigo - pos.y).modulo();
-	if (distancia < (e.GetTam()).modulo() / 2 + 1.0f)
+	if ((e.GetPos() - h.GetPos()).modulo() < 1.0f)
 		return true;
 	return false;
 }
+
+void Interaccion::colision(hombre& h, Enemigos** le)
+{
+	static bool flag = true;
+	static unsigned int contador = 0;
+
+	if(!contador)
+	for (int i = 0; le[i] != nullptr; i++) {
+
+		if(Interaccion::colision(h, *le[i])){
+
+			if (h.GetArmadura()&& flag ) {
+				h.DisminuyeArmadura();
+				flag = false;
+			}
+			else if(h.Getvida()&& flag ) {
+				h.DisminuyeVida();
+				flag = false;
+			}
+			else {
+				flag = false;
+
+			}
+		}
+		else {
+			
+		}
+			
+	}
+	if(!flag)
+		contador++;
+	 if (contador > 80) {
+		contador = 0;
+		flag = true;
+	}
+		
+}
+
+
+
 bool Interaccion::proximidad(hombre& h, Enemigos& e) {
 	vector2D pos = h.GetPos() - e.GetPos();
 	if (pos.modulo() < e.GetRango()) return true;						//si el hombre está a rango
