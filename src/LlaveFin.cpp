@@ -2,6 +2,7 @@
 
 LlaveFin::LlaveFin() :bonus()
 {
+	SetNombre("Llave");
 	textura = "imagenes/llave.png";
 	textura.setSize(1.0f, 1.0f);
 	textura.setPos(posicion.x, posicion.y);
@@ -10,6 +11,7 @@ LlaveFin::LlaveFin() :bonus()
 
 LlaveFin::LlaveFin(float x, float y) : bonus(x, y, "imagenes/llave.png")
 {
+	SetNombre("Llave");
 	textura.setSize(1.0f, 1.0f);
 	textura.setPos(posicion.x, posicion.y);
 	textura.setCenter(0.5f, 0.5f);
@@ -17,6 +19,7 @@ LlaveFin::LlaveFin(float x, float y) : bonus(x, y, "imagenes/llave.png")
 
 LlaveFin::LlaveFin(vector2D a) : bonus(a, "imagenes/llave.png")
 {
+	SetNombre("Llave");
 	textura.setSize(1.0f, 1.0f);
 	textura.setPos(posicion.x, posicion.y);
 	textura.setCenter(0.5f, 0.5f);
