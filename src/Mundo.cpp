@@ -37,6 +37,64 @@ void Mundo::setMapa(int l)
 {
 	ptipo = tipo (l);
 }
+bool Mundo::CargarNivel()
+{
+	bool res = false;
+	switch (ptipo)
+	{
+	case Mundo::CEMENTERIO:
+		setFin(false);
+		flagMapa = false;
+		Genera();
+		break;
+	case Mundo::NIEVE:
+		setFin(false);
+		flagMapa = false;
+		Genera();
+		break;
+	case Mundo::BASICO:
+		setFin(false);
+		flagMapa = false;
+		Genera();
+		break;
+	default:
+		setFin(false);
+		flagMapa = true;
+		res= true;
+		break;
+	}
+
+	return res;
+}
+
+void Mundo::GestorNiveles()
+{
+
+	if (flagMapa) {
+		setMapa(Cual_Mapa++);
+		destruirMapa();
+		flag_Final=CargarNivel();
+		if (flag_Final) {
+			Cual_Mapa = 0;
+			ptipo = CEMENTERIO;
+		}
+	
+	}
+
+	if (getImpacto() || getcaida()) {
+		flagMapa = true;
+		flag_Muerte = true;
+		Cual_Mapa = 0;
+		ptipo = CEMENTERIO;
+	}
+	if (getFin()) {
+		setFin(false);
+		flagMapa = true;
+	}
+	
+}
+
+
 void Mundo::inicializa()
 {
 	x_ojo = 9.5;
@@ -59,10 +117,9 @@ void Mundo::inicializa()
 	
 	fin = false;
 	ncoin = 0;//Reestablecer a 0 cada vez que se inicializa el mapa
-	
-	
-	Genera();
-	llave.SetPos(Suelos.getSuelo().back()->GetLim1().x, 2);
+	Cual_Mapa = 0;
+	setFlagMapa(true);
+	destruirMapa();
 
 
 }
@@ -206,27 +263,7 @@ void Mundo::tecla(unsigned char key)
 
 	switch (key)
 	{
-	/*
-	case 'd':
-	case 'D':
-		personaje->SetVel(personaje->GetVel().x + 5, personaje->GetVel().y);
-		break;
-	case 'a':
-	case 'A':
-		personaje->SetVel(personaje->GetVel().x - 5, personaje->GetVel().y);
-		break;*/
-	/*case'w' :
-		z_ojo += 1.0f;
-		break;
-	case 's':
-		z_ojo -=1.0f;
-		break;
-	case 'e':
-		y_ojo += 1.0F;
-		break;
-	case 'x':
-		y_ojo -= 1.0f;
-		break;*/
+
 	case 'd':
 	case 'D':
 		if (personaje->GetAtaqueEs() > 0) {
@@ -459,7 +496,9 @@ void Mundo::Genera()
 			}
 
 		}
-
-	}
 	Fondo.Genera(length, longitud);
+	llave.SetPos(Suelos.getSuelo().back()->GetLim1().x, 2);
+		
+	}
+
 }
