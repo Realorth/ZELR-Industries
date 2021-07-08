@@ -98,7 +98,7 @@ void CoordinadorJuego::tecla(unsigned char key)
 		}
 	}
 	else if (estado == FIN) {
-		if (key == 'c'||key=='C)
+		if (key == 'c'||key=='C')
 			estado = INICIO;
 	}
 }
