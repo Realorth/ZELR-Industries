@@ -27,11 +27,14 @@ public:
 	int GetAtaque() { return ataque; }
 	int GetArmadura() { return armadura; }
 	int GetAtaqueEs() { return ataqueEspecial; }
-	void AumentaVida() { vida += 1; }
-	void AumentaAtaque() { ataque += 1; }
-	void AumentaArmadura() { armadura += 1; }
-	void AumentarAtaqueEs() { ataqueEspecial += 1; }
-	void DisminuirAtaqueEs() { ataqueEspecial -= 1; }
+	void AumentaVida(int i = 1) { vida += i; }
+	void DisminuyeVida(int i = 1) { vida -= i; }
+	void AumentaAtaque(int i = 1) { ataque += i; }
+	void DisminuyeAtaque(int i = 1) { ataque -= i; }
+	void AumentaArmadura(int i = 1) { armadura += i; }
+	void DisminuyeArmadura(int i = 1) { armadura -= i; }
+	void AumentarAtaqueEs(int i=1) { ataqueEspecial += i; }
+	void DisminuirAtaqueEs(int i=1) { ataqueEspecial -= i; }
 	void mueve(float t) { objetomovil::mueve(t); 
 	if (this->velocidad.y < -5) velocidad.y = -5;
 	}
