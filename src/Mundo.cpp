@@ -200,6 +200,14 @@ void Mundo::mueve()
 	Interaccion::rebote(*personaje, Suelos.getSuelo());
 	Interaccion::rebote(*personaje, Plataformas.getPlataforma());
 	WolfPack.colision(disparos);
+	//Borrar los enemigos con vida 0 y agregar en su lugar una moneda como recompensa
+	for (int i = 0; i < WolfPack.getNumero(); i++) 
+		if (WolfPack[i]->Getvida() <= 0) {
+			vector2D posEnemy = WolfPack[i]->GetPos();
+			WolfPack.eliminar(WolfPack[i]);
+			listaCoins.agregar(new coin(posEnemy.x,posEnemy.y+1.0f));
+		}
+
 	Interaccion::colision(*personaje, WolfPack.GetLista());
 	if (!personaje->Getvida())
 		impacto = true;
