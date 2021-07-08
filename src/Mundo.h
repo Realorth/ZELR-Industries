@@ -21,9 +21,7 @@
 #include "coin.h"
 #include <string>
 #include <iostream>
-#include "ListaArmaduras.h"
-#include "ListaCorazones.h"
-#include "ListaBolaFuego.h"
+#include "ListaBonus.h"
 #include "LlaveFin.h"
 #include "Murcielago.h"
 #include "PerroVil.h"
@@ -71,20 +69,8 @@ private:
 	hombre* personaje;
 	disparo* disparo1;
 	ListaEnemigos WolfPack;
-
+	ListaBonus listaBonus;
 	listadisparos disparos;
-
-	//disparoespecial disparogrande;
-
-	/*coin moneda1;
-	coin moneda2;
-	BonusCorazon corazon;
-	BonusArmadura armadura;
-	bonusBolaFuego bolaFuego;*/
-	ListaArmaduras listaArmaduras;
-	ListaCorazones listaCorazones;
-	ListaBolaFuego listaBFuego;
-	ListaCoins listaCoins;
 	// Se crean instancias para cada parte del mundo
 	suelo Suelos;
 	plataforma Plataformas;
