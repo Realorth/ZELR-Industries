@@ -17,7 +17,6 @@
 #include "fondo.h"
 #include "plataforma.h"
 #include "suelo.h"
-#include "ListaCoins.h"
 #include "coin.h"
 #include <string>
 #include <iostream>
