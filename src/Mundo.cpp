@@ -14,10 +14,7 @@ Mundo:: ~ Mundo()
 {
 
 	disparos.destruirContenido();
-	listaCoins.destruirContenido();
-	listaArmaduras.destruirContenido();
-	listaCorazones.destruirContenido();
-	listaBFuego.destruirContenido();
+	listaBonus.destruirContenido();
 	Fondo.destruirContenido();
 	Plataformas.destruirContenido();
 	Suelos.destruirContenido();
@@ -29,10 +26,7 @@ void Mundo::destruirMapa() {
 	Suelos.destruirContenido();
 	Plataformas.destruirContenido();
 	Fondo.destruirContenido();
-	listaArmaduras.destruirContenido();
-	listaBFuego.destruirContenido();
-	listaCoins.destruirContenido();
-	listaCorazones.destruirContenido();
+	listaBonus.destruirContenido();
 	WolfPack.destruirContenido();
 	x_ojo = 9.5f;
 	personaje->SetPos(x_ojo, 1.0f);
@@ -85,13 +79,11 @@ void Mundo::dibuja()
 	Suelos.dibuja();
 	Fondo.dibuja();
 	Plataformas.dibuja();
+	//Se dibuja la lista de diparos
 	disparos.dibuja();
-	
-	//Se dibuja las listas de bonus
-	listaCoins.dibuja();
-	listaArmaduras.dibuja();
-	listaCorazones.dibuja();
-	listaBFuego.dibuja();
+	//Se dibuja la lista de bonus
+	listaBonus.dibuja();
+	//Se dibuja la lista de enemigos
 	WolfPack.dibuja();
 	//Cantidad de vidas
 	ETSIDI::setTextColor(1, 0, 0);
@@ -150,36 +142,29 @@ void Mundo::mueve()
 		personaje->SetAcel(0, 0);
 
 	}
-	BonusArmadura* auxA = listaArmaduras.colision(*personaje);
-	if (auxA != 0) {
-		personaje->AumentaArmadura();
-		ETSIDI::play("sonidos/Bonus.wav");
-		listaArmaduras.eliminar(auxA);
+	
+	//colision de bonus-hombre
+	bonus* auxbonus = listaBonus.colision(*personaje);
+	if (auxbonus != 0) {
+		if (!strcmp(auxbonus->GetNombre().c_str(), "Armadura")) {
+			personaje->AumentaArmadura();
+			ETSIDI::play("sonidos/Bonus.wav");
+		}
+		if (!strcmp(auxbonus->GetNombre().c_str(), "BolaFuego")) {
+			personaje->AumentarAtaqueEs();
+			ETSIDI::play("sonidos/Bonus.wav");
+		}
+		if (!strcmp(auxbonus->GetNombre().c_str(), "Corazon")){
+			personaje->AumentaVida();
+			ETSIDI::play("sonidos/Bonus.wav");
+		}
+		if (!strcmp(auxbonus->GetNombre().c_str(), "Moneda")) {
+			ETSIDI::play("sonidos/coin.wav");
+			ncoin += 1;
+		}
+		listaBonus.eliminar(auxbonus);
 	}
-
-	BonusCorazon* auxC = listaCorazones.colision(*personaje);
-	if (auxC != 0) {
-		personaje->AumentaVida();
-		ETSIDI::play("sonidos/Bonus.wav");
-		listaCorazones.eliminar(auxC);
-
-	}
-
-	bonusBolaFuego* auxB = listaBFuego.colision(*personaje);
-	if (auxB != 0) {
-		personaje->AumentarAtaqueEs();
-		ETSIDI::play("sonidos/Bonus.wav");
-		listaBFuego.eliminar(auxB);
-	}
-
-	// Interacción y eliminación de una moneda con el jugador
-	coin* auxc = listaCoins.colision(*personaje);
-	if (auxc != 0) {
-		ETSIDI::play("sonidos/coin.wav");
-		ncoin += 1;
-		//std::cout << ncoin << "y" << pcoin << std::endl;
-		listaCoins.eliminar(auxc);
-	}
+	
 
 	// Muerte del jugador por caida
 	if (Interaccion::muertecaida(*personaje) ==true )
@@ -205,7 +190,7 @@ void Mundo::mueve()
 		if (WolfPack[i]->Getvida() <= 0) {
 			vector2D posEnemy = WolfPack[i]->GetPos();
 			WolfPack.eliminar(WolfPack[i]);
-			listaCoins.agregar(new coin(posEnemy.x,posEnemy.y+1.0f));
+			listaBonus.agregar(new coin(posEnemy.x,posEnemy.y+1.0f));
 		}
 
 	Interaccion::colision(*personaje, WolfPack.GetLista());
@@ -399,30 +384,24 @@ void Mundo::Genera()
 
 					switch (m) {
 					case'm'://monedas
-				
-						listaCoins.agregar(new coin(x,y));
+						listaBonus.agregar(new coin(x,y));
 						x += longitud;
-						std::cout << "Numero de monedas en la lista: " << listaCoins.getNumero() << "  " << listaCoins.getNumero() << std::endl;
-						//delete auxiliarCoin;
 						break;
 					case'd'://disparo especial-bola de fuego
-					
-						listaBFuego.agregar(new bonusBolaFuego(x,y));
+						listaBonus.agregar(new bonusBolaFuego(x,y));
 						x += longitud;
 						break;
 					case 'c'://corazones
-
-						listaCorazones.agregar(new BonusCorazon(x,y));
+						listaBonus.agregar(new BonusCorazon(x,y));
 						x += longitud;
 						break;
 					case'a'://armadura
-
-						listaArmaduras.agregar(new BonusArmadura(x,y));
+						listaBonus.agregar(new BonusArmadura(x,y));
 						x += longitud;
 						break;
 					case 'p':
 						if (contador == 0)
-							x += longitud;
+						x += longitud;
 						contador++;
 						break;
 					case '-':
@@ -435,19 +414,19 @@ void Mundo::Genera()
 							x += longitud;
 						}
 						break;
-					case'w':
+					case'w'://Perros
 						aux_perro = new PerroVil();
 						aux_perro->SetPos(x, y);
 						WolfPack.agregar(aux_perro);
 						x += longitud;
 						break;
-					case 'x':
+					case 'x'://Murcielagos
 						aux_murcielago = new Murcielago();
 						aux_murcielago->SetPos(x, y);
 						WolfPack.agregar(aux_murcielago);
 						x += longitud;
 						break;
-					case'l':
+					case'l'://acolitos
 						aux_alco = new AcolitoOscuro();
 						aux_alco->SetPos(x, y);
 						WolfPack.agregar(aux_alco);
