@@ -86,7 +86,7 @@ void ListaEnemigos::colision(listadisparos& ld)
 			ETSIDI::play("sonidos/DolorEnemigo.wav");
 		}
 	
-	//El enemigo impactado se eliminará en el mundo.cpp
+	//El enemigo impactado con vida 0 se eliminará en el mundo.cpp
 	/*std::vector<int> indexs;
 		
 	for (int i = 0; lista[i] != nullptr; i++) {
