@@ -10,7 +10,6 @@ ListaBonus::ListaBonus()
 
 ListaBonus::~ListaBonus()
 {
-
 }
 
 bool ListaBonus::agregar(bonus* b)
@@ -60,16 +59,17 @@ void ListaBonus::eliminar(bonus* b)
 		}
 }
 
-//bonus* ListaBonus::colision(hombre& h)
-//{
-//	for (int i = 0; i < numero; i++)
-//	{
-//		if (Interaccion::colision(h, *(lista[i])))
-//			return lista[i];
-//		else return 0;
-//	}
-//	return 0; //no hay colisión
-//}
+bonus* ListaBonus::colision(hombre& h)
+{
+	for (int i = 0; i < numero; i++)
+	{
+		if (Interaccion::colision(h, *(lista[i])))
+			return lista[i];
+
+	}
+	return 0; //no hay colisión
+}
+
 
 
 

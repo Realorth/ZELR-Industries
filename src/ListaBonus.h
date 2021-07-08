@@ -2,7 +2,7 @@
 #include "bonus.h"
 #include "Interaccion.h"
 #include "hombre.h"
-#define MAX_BONUS 20
+#define MAX_BONUS 200
 
 
 class ListaBonus
@@ -27,3 +27,6 @@ public:
 
 
 };
+
+
+
