@@ -141,17 +141,7 @@ bool Interaccion::colision(hombre h, bonus& b)
 		return true;
 	return false;
 }
-bool Interaccion::colision(hombre h, coin c)
-{
-	vector2D pos = h.GetPos(); //la posicion de la base del hombre
-	vector2D posMoneda = c.GetPos();
-	pos.y += h.GetAltura() / 2.0f; //posicion del centro
-	float distancia = (posMoneda - pos).modulo();
-	if (distancia < 1.0f)
-		return true;
-	return false;
 
-}
 bool Interaccion::muertecaida(hombre h)
 {
 	vector2D m = h.GetPos();
