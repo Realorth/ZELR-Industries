@@ -2,7 +2,7 @@
 
 ListaEnemigos::ListaEnemigos()
 {
-	numero = 0;//Se vacía la lista
+	numero = 0;//Se vacÃ­a la lista
 	for (int i = 0; i < MAX_ENEMIGOS; i++)
 		lista[i] = 0;//limpia todos los punteros de la lista
 }
@@ -81,9 +81,10 @@ void ListaEnemigos::colision(listadisparos& ld)
 {
 	float dano;
 	for (int i = 0; lista[i] != nullptr; i++)
-		if (dano=Interaccion::colision(lista[i], ld),dano)
+		if (dano=Interaccion::colision(lista[i], ld),dano){
 			lista[i]->DisminuyeVida(dano);
-
+			ETSIDI::play("sonidos/DolorEnemigo.wav");
+		}
 	std::vector<int> indexs;
 		
 	for (int i = 0; lista[i] != nullptr; i++) {
