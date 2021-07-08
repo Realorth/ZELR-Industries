@@ -85,7 +85,9 @@ void ListaEnemigos::colision(listadisparos& ld)
 			lista[i]->DisminuyeVida(dano);
 			ETSIDI::play("sonidos/DolorEnemigo.wav");
 		}
-	std::vector<int> indexs;
+	
+	//El enemigo impactado se eliminará en el mundo.cpp
+	/*std::vector<int> indexs;
 		
 	for (int i = 0; lista[i] != nullptr; i++) {
 		if (lista[i]->Getvida() <= 0)
@@ -93,7 +95,7 @@ void ListaEnemigos::colision(listadisparos& ld)
 	}
 	
 	for (auto i : indexs) 
-		eliminar(i);
+		eliminar(i);*/
 
 }
 
