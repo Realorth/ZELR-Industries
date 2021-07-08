@@ -25,9 +25,9 @@
 #include "ListaCorazones.h"
 #include "ListaBolaFuego.h"
 #include "LlaveFin.h"
-
+#include "Murcielago.h"
 #include "PerroVil.h"
-#include "AlcolitoOscuro.h"
+#include "AcolitoOscuro.h"
 #include"ListaEnemigos.h"
 class Mundo
 {
