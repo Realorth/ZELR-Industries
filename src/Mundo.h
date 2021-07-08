@@ -52,9 +52,17 @@ public:
 	void setMapa(int a);
 	void setMapa(tipo a) { ptipo = a; }
 	void destruirMapa() ;
-	bool CargarNivel();//Falta por definir
+	void GestorNiveles();
 	void Genera();
 	void setPersonaje(int n) { EleccionPersonaje = n; }
+	
+	bool getFinalJuego() { return flag_Final; }
+	bool getFinalMuerte() { return flag_Muerte; }
+	void setFinalJuego(bool a) { flag_Final = a; }
+	void setFinalMuerte(bool a) { flag_Muerte = a;  }
+
+	void setFlagMapa(bool a) { flagMapa = a; }
+	bool getFlagMapa() { return flagMapa; }
 private:
 	Vector3D ojo;
     float x_ojo;
@@ -64,7 +72,12 @@ private:
 	bool caida = false;//True si el personaje se cae
 	bool fin=false;//true si se llega al final del mapa y se toca la llave
 	int ncoin = 0;//Numero de monedas de cada partida
-
+		
+	bool flag_Muerte = false;//Representa el estado
+	// acabar el juego por falta de vidas
+	bool flag_Final = false;//Representa el final del juego
+	int Cual_Mapa = 0;
+	
 	hombre* personaje;
 	disparo* disparo1;
 	ListaEnemigos WolfPack;
@@ -80,5 +93,5 @@ private:
 	int EleccionPersonaje;//0 es pistolero, 1 es arquero y 2 es mago
 private:
 	void destruirContenido();
-
+	bool CargarNivel();//Falta por definir
 };
