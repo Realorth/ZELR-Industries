@@ -23,11 +23,13 @@ public:
 	float GetRadio();
 	vector2D getOrigin() { return origen; }
 	float GetLongitud();
-	
+	string GetNombre() { return nombre; }
+	void SetNombre(string a) { nombre = a; }
 	friend class Interaccion;
 	friend class listadisparos;
 
 protected:
+	string nombre="Normal";
 	vector2D origen;
 	float radio;
 	ColorRGB color;
