@@ -116,61 +116,6 @@ void CoordinadorJuego::dibuja()
 	static bool flagGameOver = true;//Flag para el game over
 	static bool flagMapa = true;//Flag para cambio de mapa
 
-	if (estado == INICIO) {
-		flagGameOver = true;
-		gluLookAt(0, 7.5, 30,//posicion ojo
-				0.0, 7.65, 0.0,//hacia donde mira
-				0.0, 1.0, 0.0);//definimos hacia arriba eje y
-		ETSIDI::setTextColor(1, 1, 0);
-		ETSIDI::setFont("fuentes/Astral_Groove.ttf", 12);
-		ETSIDI::printxy("JUEGO DE PLATAFORMAS", -7, 8);
-		ETSIDI::setTextColor(0, 0, 1);
-		ETSIDI::setFont("fuentes/Astral_Groove.ttf", 8);
-		ETSIDI::printxy("ZELR-INDUSTRIES", -12, 15);
-		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-		ETSIDI::printxy("PULSE EL ESPACIO PARA JUGAR", -5, 6);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -5, 4);
-	}
-	else if (estado == MENU_PRINCIPAL) {
-		gluLookAt(0, 7.5, 30,//posicion ojo
-			0.0, 7.65, 0.0,//hacia donde mira
-			0.0, 1.0, 0.0);//definimos hacia arriba eje y
-
-		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -E- PARA EMPEZAR A JUGAR CON PISTOLERO", -9, 7);
-		ETSIDI::printxy("ZERL INDUSTRIES", 2, 1);
-		ETSIDI::printxy("Monedas Disponibles: ", -3, 14);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA ATRAS", -6, 3);
-		//Impresión de las monedas disponibles en pantalla
-		if (flagLecturaMonedas) {
-			LecturaMonedas::leer(a);
-			m = a.c_str();
-			cout << m;
-			flagLecturaMonedas = false;
-		}
-		ETSIDI::setTextColor(1, 1, 1);
-		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-		ETSIDI::printxy(m, 5, 14);
-
-		if (atoi(m) >= 500)
-			ETSIDI::printxy("PULSE LA TECLA -R- PARA EMPEZAR A JUGAR CON ARQUERO", -9, 6);
-
-		if (atoi(m) >= 1000)
-			ETSIDI::printxy("PULSE LA TECLA -T- PARA EMPEZAR A JUGAR CON MAGO", -9, 5);
-
-		ETSIDI::setTextColor(1, 0, 0);
-		if (atoi(m) < 500)
-			ETSIDI::printxy("JUGADOR ARQUERO NO DISPONIBLE>>DESBLOQUEO CON 500 MONEDAS", -10, 6);
-		if (atoi(m) < 1000)
-			ETSIDI::printxy("JUGADOR MAGO NO DISPONIBLE>>DESBLOQUEO CON 1000 MONEDAS", -10, 5);
-	}
-	else if (estado == JUEGO) {
-		static bool flagLecturaMonedas = true;//Flag para la lectura de las monedas(leer una vez)
-	static bool flagGameOver = true;//Flag para el game over
-	static bool flagMapa = true;//Flag para cambio de mapa
-
 
 	if (estado == INICIO) {
 		flagGameOver = true;
@@ -259,18 +204,31 @@ void CoordinadorJuego::dibuja()
 				ETSIDI::printxy(c, a.x-10, 7);
 				const char* b = "PULSE LA TECLA -S- PARA SALIR";
 				ETSIDI::printxy(b, a.x-10, 5);
+
 			}
+
 		}
+
+
+
 	}
+
 	else if (estado == GAMEOVER) {
 		static bool flag = true;
 		//bool flagSonido = true;
+
 		mundo.dibuja();
+
 		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("GAMEOVER: Has perdido...", -10 + mundo.getOjo().x, 10);
 		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -10 + mundo.getOjo().x, 5);
 		ETSIDI::printxy("PULSE LA TECLA ESPACIO PARA VOLVER A JUGAR", - 10 + mundo.getOjo().x, 2);
+		/*if (flagSonido) {
+			ETSIDI::play("sonidos/GameOver.wav");
+			flagSonido = false;
+		}*/
+
 		//Almacenamiento de las monedas adquiridas en el fichero .txt
 		if (flagGameOver) {
 			ETSIDI::play("sonidos/GameOver.wav");//Solo suena una vez cuando se pierde
