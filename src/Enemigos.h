@@ -29,16 +29,24 @@ public:
 
 	int GetRango() { return rango; }
 	void SetRango(int r) { rango = r; }
+	void AumentaRango(int i = 1) { rango += i; }
+	void DisminuyeRango(int i = 1) { rango -= i; }
 	virtual void reacciona() {}
 
 	void SetVida(int hp) { vida = hp; }
 	int Getvida() { return vida; }
+	void AumentaVida(int i=1) { vida+=i; }
+	void DisminuyeVida(int i=1) { vida-=i; }
 
 	void SetArmadura(int a) { armadura = a; }
 	int GetArmadura() { return armadura; }
+	void AumentaArmadura(int i = 1) { armadura += i; }
+	void DisminuyeArmadura(int i = 1) { armadura -= i; }
 
 	int GetAtaque() { return ataque; }
 	void SetAtaque(int atk) { ataque = atk; }
+	void AumentaAtaque(int i = 1) { ataque += i; }
+	void DisminuyeAtaque(int i = 1) { ataque -= i; }
 
 	vector2D GetTam() { return tamano; }
 	void SetTam(vector2D tam) { tamano = tam; }
