@@ -187,9 +187,9 @@ void Interaccion::colision(hombre& h, Enemigos** le)
 
 	if(!contador)
 	for (int i = 0; le[i] != nullptr; i++) {
-
+		
 		if(Interaccion::colision(h, *le[i])){
-
+			ETSIDI::play("sonidos/DanoHombre.wav");
 			if (h.GetArmadura()&& flag ) {
 				h.DisminuyeArmadura();
 				flag = false;
