@@ -32,7 +32,6 @@ public:
 	static void colision(hombre& h, pared p);
 
 	static bool colision(hombre h, bonus& b);
-	static bool colision(hombre h, coin c);
 	static bool muertecaida(hombre h);
 
 
