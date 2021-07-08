@@ -11,7 +11,7 @@ public:
 	listadisparos();
 	virtual ~listadisparos();
 
-	bool agregar(disparo* d);// Devuelve true sí se ha podido añadir un nuevo disparo
+	bool agregar(disparo* d);// Devuelve true sÃ­ se ha podido aÃ±adir un nuevo disparo
 	void destruirContenido();
 	void mueve(float t);
 	void dibuja();
@@ -22,9 +22,11 @@ public:
 	void eliminar(disparo* d);
 	int getNumero() { return numero; }
 	disparo* operator[](int i);
+	disparo** GetLista() { return lista; }
 private:
 	disparo* lista[MAX_DISPAROS];
 	int numero;
+	friend class Interaccion;
 };
 
 
