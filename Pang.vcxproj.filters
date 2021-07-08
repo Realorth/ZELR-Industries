@@ -111,9 +111,6 @@
     <ClInclude Include="src\LlaveFin.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="src\Menu.h">
-      <Filter>Archivos de encabezado</Filter>
-    </ClInclude>
     <ClInclude Include="src\Enemigos.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
@@ -124,6 +121,9 @@
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
     <ClInclude Include="src\ListaEnemigos.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Murcielago.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>
@@ -234,6 +234,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\ListaEnemigos.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Murcielago.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

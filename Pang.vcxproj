@@ -46,8 +46,8 @@
     <ClInclude Include="src\LlaveFin.h" />
     <ClInclude Include="src\Magia.h" />
     <ClInclude Include="src\mago.h" />
-    <ClInclude Include="src\Menu.h" />
     <ClInclude Include="src\Mundo.h" />
+    <ClInclude Include="src\Murcielago.h" />
     <ClInclude Include="src\objetomovil.h" />
     <ClInclude Include="src\pared.h" />
     <ClInclude Include="src\PerroVil.h" />
@@ -85,6 +85,7 @@
     <ClCompile Include="src\Magia.cpp" />
     <ClCompile Include="src\mago.cpp" />
     <ClCompile Include="src\Mundo.cpp" />
+    <ClCompile Include="src\Murcielago.cpp" />
     <ClCompile Include="src\objetomovil.cpp" />
     <ClCompile Include="src\Pang.cpp" />
     <ClCompile Include="src\pared.cpp" />
