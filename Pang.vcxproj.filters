@@ -126,6 +126,9 @@
     <ClInclude Include="src\Murcielago.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\AcolitoOscuro.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\disparo.cpp">
@@ -237,6 +240,9 @@
       <Filter>Archivos de origen</Filter>
     </ClCompile>
     <ClCompile Include="src\Murcielago.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="src\AcolitoOscuro.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>

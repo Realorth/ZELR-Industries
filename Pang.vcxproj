@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\AcolitoOscuro.h" />
     <ClInclude Include="src\arquero.h" />
     <ClInclude Include="src\bala.h" />
     <ClInclude Include="src\bonus.h" />
@@ -58,6 +59,7 @@
     <ClInclude Include="src\Vector3D.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\AcolitoOscuro.cpp" />
     <ClCompile Include="src\arquero.cpp" />
     <ClCompile Include="src\bala.cpp" />
     <ClCompile Include="src\Bonus.cpp" />
