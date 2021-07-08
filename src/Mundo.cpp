@@ -368,7 +368,7 @@ void Mundo::Genera()
 		std::string aux;
 		PerroVil* aux_perro;
 		Murcielago* aux_murcielago;
-		AlcolitoOscuro* aux_alco;
+		AcolitoOscuro* aux_alco;
 		while (a.good()) {
 
 			char m;
