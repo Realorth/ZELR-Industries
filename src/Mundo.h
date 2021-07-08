@@ -76,11 +76,11 @@ private:
 
 	//disparoespecial disparogrande;
 
-	coin moneda1;
+	/*coin moneda1;
 	coin moneda2;
 	BonusCorazon corazon;
 	BonusArmadura armadura;
-	bonusBolaFuego bolaFuego;
+	bonusBolaFuego bolaFuego;*/
 	ListaArmaduras listaArmaduras;
 	ListaCorazones listaCorazones;
 	ListaBolaFuego listaBFuego;
