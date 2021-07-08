@@ -132,8 +132,10 @@ void Mundo::mueve()
 	WolfPack.mueve(0.025f);
 	WolfPack.MuerteCaida();
 
-	WolfPack.rebote(Suelos.getSuelo());
-	WolfPack.rebote(Plataformas.getPlataforma());
+	Interaccion::rebote(WolfPack.GetLista(), Suelos.getSuelo());
+	//WolfPack.rebote(Suelos.getSuelo());
+	Interaccion::rebote(WolfPack.GetLista(), Plataformas.getPlataforma());
+	//WolfPack.rebote(Plataformas.getPlataforma());
 
 	//Interaccion de hombre-llaveFin
 	if (Interaccion::colision(*personaje, llave)) {
@@ -197,7 +199,10 @@ void Mundo::mueve()
 
 	Interaccion::rebote(*personaje, Suelos.getSuelo());
 	Interaccion::rebote(*personaje, Plataformas.getPlataforma());
-
+	WolfPack.colision(disparos);
+	Interaccion::colision(*personaje, WolfPack.GetLista());
+	if (!personaje->Getvida())
+		impacto = true;
 
 }
 
