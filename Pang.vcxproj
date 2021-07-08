@@ -37,11 +37,7 @@
     <ClInclude Include="src\hombre.h" />
     <ClInclude Include="src\Interaccion.h" />
     <ClInclude Include="src\lecturamonedas.h" />
-    <ClInclude Include="src\ListaArmaduras.h" />
-    <ClInclude Include="src\ListaBolaFuego.h" />
     <ClInclude Include="src\ListaBonus.h" />
-    <ClInclude Include="src\ListaCoins.h" />
-    <ClInclude Include="src\ListaCorazones.h" />
     <ClInclude Include="src\listadisparos.h" />
     <ClInclude Include="src\ListaEnemigos.h" />
     <ClInclude Include="src\LlaveFin.h" />
@@ -76,11 +72,7 @@
     <ClCompile Include="src\hombre.cpp" />
     <ClCompile Include="src\Interaccion.cpp" />
     <ClCompile Include="src\lecturamonedas.cpp" />
-    <ClCompile Include="src\ListaArmaduras.cpp" />
-    <ClCompile Include="src\ListaBolaFuego.cpp" />
     <ClCompile Include="src\ListaBonus.cpp" />
-    <ClCompile Include="src\ListaCoins.cpp" />
-    <ClCompile Include="src\ListaCorazones.cpp" />
     <ClCompile Include="src\listadisparos.cpp" />
     <ClCompile Include="src\ListaEnemigos.cpp" />
     <ClCompile Include="src\LlaveFin.cpp" />
