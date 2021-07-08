@@ -3,7 +3,9 @@
 #include "objetomovil.h"
 #include"ColorRGB.h"
 #include "ETSIDI.h" 
-
+#include<string>
+#include<cstring>
+using namespace std;
 class disparo : public objetomovil
 {
 public:
