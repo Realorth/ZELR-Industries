@@ -4,8 +4,8 @@ length
 60
 map
 -----------w---------w------------------w------w------------/
---------m--ppp--mmm-pppp---m--------d--pppp----ppp----------/
--------ppp-----ppp-----ppc-pp--mm---ppp----a--pp---mmm------/
+--------m--ppp-mlmm-pppp---mc-------dx-pppp----ppp----------/
+----x--ppp-----ppp-----pp--pp--mm---ppp----a--pp--lmmm------/
 ----pp-d---pp------pp----p---pp--pp---pp-c-pp--m--ppp-------/
--w-----p-ap--p-mm-p-w-d-p--m---p----p----p-----pp---mmmmmw--/
+-w-----p-ap--p-mm-p-w-d-p--m---px---p---lp-----pp---mmmmmw--/
 sssssss-ss----ssssssssss---sss-ssss---sssss--sssssssssssssss/
