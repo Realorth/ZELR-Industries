@@ -20,6 +20,8 @@ protected:
 	Estado estado;
 	const char* m;
 	string a;
-
+	bool Estado_Pausa=true;//Representa sí se ha pausado o no el juego
+	int Posicon_Seleccion = 0;
+	std::vector<char> PersonajeDesbloqueado;
 };
 
