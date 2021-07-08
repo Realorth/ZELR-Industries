@@ -74,7 +74,7 @@ private:
 
 	listadisparos disparos;
 
-	disparoespecial disparogrande;
+	//disparoespecial disparogrande;
 
 	coin moneda1;
 	coin moneda2;
