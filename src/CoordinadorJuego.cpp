@@ -457,16 +457,18 @@ void CoordinadorJuego::dibuja()
 
 		ETSIDI::setTextColor(0.5, 0.5, 1);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA ATRAS", -10, 2);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA ATRAS", -10, -1);
 
 		// Empiezan las instrucciones
 		ETSIDI::setTextColor(0.2, 0.4, 0.8);
 		ETSIDI::setFont("fuentes/waltographUI.ttf", 14);
 		ETSIDI::printxy("DEPLAZARSE: ", -10, 12);
 		ETSIDI::printxy("ATACAR: ", -10, 7);
+		ETSIDI::printxy("PAUSA: ", -10, 2);
 		ETSIDI::setTextColor(0.85, 0.85, 0.85);
 		//ETSIDI::setFont("fuentes/KindAndRich.ttf", 16);
 		ETSIDI::setFont("fuentes/Edge Of Madness.ttf", 9);
+		ETSIDI::printxy("PARA PAUSAR EL JUEGO:   TECLA -P-", -8, 1);
 		ETSIDI::printxy("IZQUIERDA:   TECLA DE FLECHA IZQUIERDA", -8, 11);
 		ETSIDI::printxy("DERECHA:   TECLA DE FLECHA DERECHA", -8, 10);
 		ETSIDI::printxy("SALTAR:   TECLA DE FLECHA ARRIBA", -8, 9);
