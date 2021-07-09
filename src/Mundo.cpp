@@ -43,16 +43,19 @@ bool Mundo::CargarNivel()
 	switch (ptipo)
 	{
 	case Mundo::CEMENTERIO:
+		destruirMapa();
 		setFin(false);
 		flagMapa = false;
 		Genera();
 		break;
 	case Mundo::NIEVE:
+		destruirMapa();
 		setFin(false);
 		flagMapa = false;
 		Genera();
 		break;
 	case Mundo::BASICO:
+		destruirMapa();
 		setFin(false);
 		flagMapa = false;
 		Genera();
@@ -72,7 +75,6 @@ void Mundo::GestorNiveles()
 
 	if (flagMapa) {
 		setMapa(Cual_Mapa++);
-		destruirMapa();
 		flag_Final=CargarNivel();
 		if (flag_Final) {
 			Cual_Mapa = 0;
@@ -454,18 +456,21 @@ void Mundo::Genera()
 					case'w'://Perros
 						aux_perro = new PerroVil();
 						aux_perro->SetPos(x, y);
+					//	aux_perro->SetVida(2);
 						WolfPack.agregar(aux_perro);
 						x += longitud;
 						break;
 					case 'x'://Murcielagos
 						aux_murcielago = new Murcielago();
 						aux_murcielago->SetPos(x, y);
+					//	aux_murcielago->SetVida(1);
 						WolfPack.agregar(aux_murcielago);
 						x += longitud;
 						break;
 					case'l'://acolitos
 						aux_alco = new AcolitoOscuro();
 						aux_alco->SetPos(x, y);
+						//aux_alco->SetVida(4);
 						WolfPack.agregar(aux_alco);
 						x += longitud;
 						break;

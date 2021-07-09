@@ -14,17 +14,23 @@ AcolitoOscuro::~AcolitoOscuro()
 AcolitoOscuro::AcolitoOscuro(float x, float y) :
 	Enemigos(x, y, "imagenes/Brujo2.png", 4)
 {
-	velocidad.x = 3.0f;
+	velocidad.x = 2.0f;
+	vida = 4.0f;
+	ataque = 2;
 }
 
 AcolitoOscuro::AcolitoOscuro(vector2D a) :
 	Enemigos(a, "imagenes/Brujo2.png", 4)
 {
-	velocidad.x = 3.0f;
+	velocidad.x = 2.0f;
+	vida = 4.0f;
+	ataque = 2;
 }
 
 AcolitoOscuro::AcolitoOscuro() :
 	Enemigos(0, 0, "imagenes/Brujo2.png", 4)
 {
-	velocidad.x = 3.0f;
+	velocidad.x = 2.0f;
+	vida = 4.0f;
+	ataque = 2;
 }

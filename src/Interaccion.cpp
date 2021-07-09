@@ -113,17 +113,21 @@ float Interaccion::colision(Enemigos* e, listadisparos& ld)
 	int index=0xFFFFF;
 	float dano = 0;
 	for (int i = 0; ld.lista[i] != nullptr; i++) {
-		if(Interaccion::colision(*e, *ld.lista[i]))
+		if (Interaccion::colision(*e, *ld.lista[i]))
 			index = i;
-	}
-	if (index != 0xFFFFF) {
-		if (!strcmp(ld[index]->GetNombre().c_str(), "Especial"))
-			dano = 2;
 		else
-			dano = 1;
-		ld.eliminar(index);
-		return dano;
+			index = 0xFFFFF;
+
+		if (index != 0xFFFFF) {
+			if (!strcmp(ld[index]->GetNombre().c_str(), "Especial"))
+				dano = 2;
+			else
+				dano = 1;
+			ld.eliminar(index);
+			return dano;
+		}
 	}
+
 	
 	return dano;
 }
@@ -180,12 +184,17 @@ void Interaccion::colision(hombre& h, Enemigos** le)
 		
 		if(Interaccion::colision(h, *le[i])){
 			ETSIDI::play("sonidos/DanoHombre.wav");
-			if (h.GetArmadura()&& flag ) {
-				h.DisminuyeArmadura();
+			if (h.GetArmadura()&& flag) {
+				if(h.GetArmadura()>=le[i]->GetAtaque())
+					h.DisminuyeArmadura(le[i]->GetAtaque());
+				else {
+					h.DisminuyeArmadura();
+					h.DisminuyeVida(le[i]->GetAtaque() - 1);
+				}
 				flag = false;
 			}
-			else if(h.Getvida()&& flag ) {
-				h.DisminuyeVida();
+			else if(h.Getvida()&& flag) {
+				h.DisminuyeVida(le[i]->GetAtaque());
 				flag = false;
 			}
 			else {

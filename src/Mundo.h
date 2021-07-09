@@ -72,12 +72,12 @@ private:
 	bool caida = false;//True si el personaje se cae
 	bool fin=false;//true si se llega al final del mapa y se toca la llave
 	int ncoin = 0;//Numero de monedas de cada partida
-	bool flagMapa = true;// Flag para cambio de mapa	
+		
 	bool flag_Muerte = false;//Representa el estado
 	// acabar el juego por falta de vidas
 	bool flag_Final = false;//Representa el final del juego
 	int Cual_Mapa = 0;
-	
+	bool flagMapa = true;
 	hombre* personaje;
 	disparo* disparo1;
 	ListaEnemigos WolfPack;
