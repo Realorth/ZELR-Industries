@@ -145,7 +145,7 @@ void CoordinadorJuego::tecla(unsigned char key)
 	}
 	else if (estado == GAMEOVER) {
 		switch (key) {
-		case 'S':case 's:
+		case 'S':case 's':
 		case ' ':
 			estado = INICIO;
 			mundo.setcaida(false);//Para reiniciar el juego
