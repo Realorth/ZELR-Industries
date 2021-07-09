@@ -112,9 +112,13 @@ float Interaccion::colision(Enemigos* e, listadisparos& ld)
 {
 	int index=0xFFFFF;
 	float dano = 0;
-	for (int i = 0; ld.lista[i] != nullptr; i++) {
-		if (Interaccion::colision(*e, *ld.lista[i]))
-			index = i;
+	for (int i = 0; ld.lista[i] != nullptr&&i<ld.getMax(); i++) {
+	if (ld.lista[i] != nullptr) {
+			if (Interaccion::colision(*e, *ld.lista[i]))
+				index = i;
+			else
+				index = 0xFFFFF;
+		}
 		else
 			index = 0xFFFFF;
 
