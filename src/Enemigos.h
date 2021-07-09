@@ -8,11 +8,11 @@ protected:
 	ETSIDI::SpriteSequence sprite_enemigo;
 	int tamano_secuencia = 0;
 	vector2D tamano;
-	//tamano.x ==ancho
-	//tamano.y= altura
+	//tamano.x == ancho
+	//tamano.y == alto
 
-	float rango=0;	//distancia a partir de la cual 
-	// reaccionan ante una entidad que atacaria
+	float rango=5;	//distancia a partir de la cual reaccionan ante la presencia del personaje
+	
 	int vida = 1;
 	int ataque = 1;
 	int armadura = 0;
