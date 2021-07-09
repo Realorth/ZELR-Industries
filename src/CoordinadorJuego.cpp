@@ -197,6 +197,7 @@ void CoordinadorJuego::dibuja()
 	static bool flagMapa = true;//Flag para cambio de mapa
 
 	if (estado == INICIO) {
+		ETSIDI::playMusica("sonidos/Inicio.wav", true);
 		flagGameOver = true;
 		gluLookAt(0, 7.5, 30,//posicion ojo
 			0.0, 7.65, 0.0,//hacia donde mira
