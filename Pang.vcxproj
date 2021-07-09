@@ -40,6 +40,7 @@
     <ClInclude Include="src\ListaBonus.h" />
     <ClInclude Include="src\listadisparos.h" />
     <ClInclude Include="src\ListaEnemigos.h" />
+    <ClInclude Include="src\ListaPared.h" />
     <ClInclude Include="src\LlaveFin.h" />
     <ClInclude Include="src\Magia.h" />
     <ClInclude Include="src\mago.h" />
@@ -75,6 +76,7 @@
     <ClCompile Include="src\ListaBonus.cpp" />
     <ClCompile Include="src\listadisparos.cpp" />
     <ClCompile Include="src\ListaEnemigos.cpp" />
+    <ClCompile Include="src\ListaPared.cpp" />
     <ClCompile Include="src\LlaveFin.cpp" />
     <ClCompile Include="src\Magia.cpp" />
     <ClCompile Include="src\mago.cpp" />
@@ -89,6 +91,11 @@
     <ClCompile Include="src\suelo.cpp" />
     <ClCompile Include="src\vector2D.cpp" />
     <ClCompile Include="src\Vector3D.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ObjetoMovil.cd" />
+    <None Include="ObjetoMovil2.cd" />
+    <None Include="Paredes.cd" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

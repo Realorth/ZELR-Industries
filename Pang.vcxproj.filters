@@ -117,6 +117,9 @@
     <ClInclude Include="src\AcolitoOscuro.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
+    <ClInclude Include="src\ListaPared.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\disparo.cpp">
@@ -221,5 +224,13 @@
     <ClCompile Include="src\AcolitoOscuro.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
+    <ClCompile Include="src\ListaPared.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ObjetoMovil.cd" />
+    <None Include="Paredes.cd" />
+    <None Include="ObjetoMovil2.cd" />
   </ItemGroup>
 </Project>
