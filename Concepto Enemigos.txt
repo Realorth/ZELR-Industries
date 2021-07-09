@@ -1,3 +1,6 @@
+Diseños iniciales. distintos al resultado final.
+
+
 //////////////////////////////////////////////////////////////////////////////////////
 Perro Vil:
 -	Se mueve a lo largo de la plataforma sobre la que se genera
