@@ -157,10 +157,6 @@ void CoordinadorJuego::tecla(unsigned char key)
 		case ' ':
 			mundo.setcaida(false);//Para reiniciar el juego
 			mundo.setImpacto(false);//Para reiniciar el juego
-			Valor_Monedas = Valor_Monedas + mundo.getnCoin();
-			a = to_string(Valor_Monedas);
-			m = a.c_str();
-			LecturaMonedas::escribir(a);
 			estado = JUEGO;
 			break;
 		}
