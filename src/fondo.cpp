@@ -1,12 +1,5 @@
 #include "fondo.h"
 
-void fondo::destruirContenido()
-{
-
-	for (auto i : Background)
-		delete i;
-	Background.clear();
-}
 
 void fondo::dibuja()
 {
@@ -14,35 +7,18 @@ void fondo::dibuja()
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_TEXTURE_2D);
-	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture(Fondo).id);
+	glBindTexture(GL_TEXTURE_2D, ETSIDI::getTexture(ImagenFondo).id);
 	
 	glDisable(GL_LIGHTING);
 
-	for (auto i = 0; i < Background.size(); i++) {
-		polygon3D(Background[i]);
+	for (auto i = 0; i < lista.size(); i++) {
+		polygon3D(lista[i]);
 	}
 	glDisable(GL_BLEND);
 	glEnable(GL_LIGHTING);
 	glDisable(GL_TEXTURE_2D);
 }
 
-
-
-
-void fondo::agregar(pared* a)
-{
-	Background.push_back(a);
-}
-
-void fondo::setTextura(const char* a)
-{
-	Fondo = a;
-}
-
-void fondo::setTextura(std::string a)
-{
-	Fondo = a.c_str();
-}
 
 inline void fondo::polygon3D(pared* s)
 {
@@ -67,7 +43,7 @@ void fondo::Genera()
 
 	for (auto i = -1; i < MAX_LONG; i += a) {
 		pared* aux = new pared(l * i, 20.0f, a * l);
-		Background.push_back(aux);
+		lista.push_back(aux);
 	}
 
 }
@@ -77,7 +53,7 @@ void fondo::Genera(int longt, float longitud)
 	int n_segmentos = longt / ((2 * l) / longitud);
 	for (auto i = 0; i < n_segmentos; i++) {
 		pared* aux = new pared(2 * l * i - longitud, 20.0f, 2 * l);
-		Background.push_back(aux);
+		lista.push_back(aux);
 	}
 
 }

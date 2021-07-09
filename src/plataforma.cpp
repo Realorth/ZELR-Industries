@@ -3,12 +3,7 @@
 #include<algorithm>
 #include<time.h>
 #include<iostream>
-void plataforma::destruirContenido()
-{
-	for (auto i : platform)
-		delete i;
-	platform.clear();
-}
+
 
 void plataforma::Genera()
 {
@@ -22,7 +17,7 @@ void plataforma::Genera()
 	// se tiene que generar forzadamente la primera plataforma para  conseguir coherencia
 	
 	pared* auxi = new pared(-10.0f, 3.0f, 10.0f);
-	platform.push_back(auxi);
+	lista.push_back(auxi);
 	std::srand(time(nullptr));
 
 	for (auto i = 1; i < 60 - 3; i++) {
@@ -32,10 +27,10 @@ void plataforma::Genera()
 		auto dist = distancia_entre_plataformas(gen);
 		auto op = sube_baja(gen);
 		// se crean las paredes
-		pared* aux = new pared(i * platform[i - 1]->GetLenght() + platform[0]->GetLim1().x, dist, platform[i - 1]->GetLenght());
+		pared* aux = new pared(i * lista[i - 1]->GetLenght() + lista[0]->GetLim1().x, dist, lista[i - 1]->GetLenght());
 		auto l1x = aux->GetLim1().x;
 		auto l2x = aux->GetLim2().x;
-		auto y = platform[i - 1]->GetLim1().y;
+		auto y = lista[i - 1]->GetLim1().y;
 		// sí se está en alguno de los límites se arregla 
 		if ((y - dist) < 3.0f) {
 			aux->SetLim1(l1x, dist + y);
@@ -61,34 +56,18 @@ void plataforma::Genera()
 				break;
 			}
 		}
-		platform.push_back(aux);
+		lista.push_back(aux);
 	}
 }
 
 void plataforma::dibuja()
 {
-	for (auto a : platform) {
-		Plataforma->setPos(a->GetLim1().x - 0.5f, (a->GetLim1().y - 1.5f - 0.5f));
-		Plataforma->setSize(a->GetLenght(), 1.50f);
+	for (auto a : lista) {
+		sprite_ListaPared->setPos(a->GetLim1().x - 0.5f, (a->GetLim1().y - 1.5f - 0.5f));
+		sprite_ListaPared->setSize(a->GetLenght(), 1.50f);
 		a->dibuja();
 		
-		Plataforma->draw();
+		sprite_ListaPared->draw();
 	}
 }
 
-void plataforma::agregar(pared* a)
-{
-	platform.push_back(a);
-}
-
-void plataforma::setTextura(const char* a)
-{
-	delete Plataforma;
-	Plataforma = new ETSIDI::Sprite(a);
-}
-
-void plataforma::setTextura(std::string a)
-{
-	delete Plataforma;
-	Plataforma = new ETSIDI::Sprite(a.c_str());
-}
