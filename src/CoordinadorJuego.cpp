@@ -249,7 +249,7 @@ void CoordinadorJuego::dibuja()
 	// Impresion de la opción de volver a atrás
 		ETSIDI::setTextColor(0.5, 0.5, 1);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA ATRAS", -10, 2);
+		ETSIDI::printxy("PULSE LA TECLA -S- PARA ATRAS", -10, -1);
 
 	}
 	else if (estado == ELEGIR_PERSONAJE){
@@ -319,7 +319,7 @@ void CoordinadorJuego::dibuja()
 			// El resto
 			ETSIDI::setTextColor(0.5, 0.5, 1);
 			ETSIDI::setFont("fuentes/Bitwise.ttf", 12);
-			ETSIDI::printxy("PULSE LA TECLA -S- PARA ATRAS", -10, 2);
+			ETSIDI::printxy("PULSE LA TECLA -S- PARA ATRAS", -10, -1);
 			ETSIDI::setTextColor(0.1, 0.3, 0.7);
 			ETSIDI::setFont("fuentes/waltographUI.ttf", 14);
 			ETSIDI::printxy("PULSE LA BARRA -ESPACIADORA- PARA APLICAR CAMBIOS", -10, 12);
