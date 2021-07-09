@@ -288,7 +288,7 @@ void CoordinadorJuego::dibuja()
 						ETSIDI::setTextColor(1, 1, 0.4);
 					else
 						ETSIDI::setTextColor(1, 1, 1);
-					ETSIDI::printxy("PULSE LA TECLA -A- PARA ELEGIR EL ARQUERO", -9, 8);
+					ETSIDI::printxy("PULSE LA TECLA -R- PARA ELEGIR EL ARQUERO", -9, 8);
 				}
 			}else if(Valor_Monedas<50){
 				ETSIDI::setTextColor(1, 0, 0);
