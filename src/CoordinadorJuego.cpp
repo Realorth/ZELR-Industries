@@ -145,21 +145,9 @@ void CoordinadorJuego::tecla(unsigned char key)
 	}
 	else if (estado == GAMEOVER) {
 		switch (key) {
-		case 'S':case 's':
-			mundo.setcaida(false);//Para reiniciar el juego
-			mundo.setImpacto(false);//Para reiniciar el juego
-			/*Valor_Monedas = Valor_Monedas + mundo.getnCoin();
-			a = to_string(Valor_Monedas);
-			m = a.c_str();
-			LecturaMonedas::escribir(a);
-			estado = MENU_PRINCIPAL;*/
-			estado = INICIO;
-			break;
+		case 'S':case 's:
 		case ' ':
-			if (mundo.getImpacto()) 
-				estado = INICIO;
-			else
-				estado = JUEGO;
+			estado = INICIO;
 			mundo.setcaida(false);//Para reiniciar el juego
 			mundo.setImpacto(false);//Para reiniciar el juego
 			break;
@@ -399,11 +387,8 @@ void CoordinadorJuego::dibuja()
 		ETSIDI::setTextColor(1, 0, 0);
 		ETSIDI::setFont("fuentes/Bitwise.ttf", 16);
 		ETSIDI::printxy("GAMEOVER: Has perdido...", -10 + mundo.getOjo().x, 10);
-		ETSIDI::printxy("PULSE LA TECLA -S- PARA SALIR", -10 + mundo.getOjo().x, 5);
-		if (mundo.getImpacto())
-			ETSIDI::printxy("PULSE LA TECLA ESPACIADORA PARA SALIR", -10 + mundo.getOjo().x, 2);
-		else
-			ETSIDI::printxy("PULSE LA TECLA ESPACIADORA PARA VOLVER A JUGAR", -10 + mundo.getOjo().x, 2);
+		ETSIDI::printxy("PULSE LA TECLA -S- O -ESPACIO- PARA SALIR", -10 + mundo.getOjo().x, 5);
+
 		//Almacenamiento de las monedas adquiridas en el fichero .txt
 		if (flagGameOver) {
 			ETSIDI::play("sonidos/GameOver.wav");//Solo suena una vez cuando se pierde
