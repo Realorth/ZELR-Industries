@@ -2,7 +2,7 @@
 //#include "disparo.h"
 #include"pared.h"
 #include "disparoespecial.h"
-#define MAX_DISPAROS 20
+#define MAX_DISPAROS 2
 
 class listadisparos
 {
@@ -23,6 +23,7 @@ public:
 	int getNumero() { return numero; }
 	disparo* operator[](int i);
 	disparo** GetLista() { return lista; }
+	int getMax(){return MAX_DISPAROS;}
 private:
 	disparo* lista[MAX_DISPAROS];
 	int numero;
