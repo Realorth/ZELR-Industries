@@ -1,0 +1,5 @@
+El siguiente enlace es del video de presentación del trabajo de informática industrial y comunicaciones del grupo ZELR INDUSTRIES:
+
+https://www.youtube.com/watch?v=h6MXX9V_s4c
+
+(nota: los objetos murciélago en el video aparece anclados a las plataformas sobre las que se generan, pero en el código final se ha hecho una ligera modificación para que vuelen por el mapa)
