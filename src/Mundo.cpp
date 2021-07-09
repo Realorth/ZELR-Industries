@@ -31,7 +31,8 @@ void Mundo::destruirMapa() {
 	x_ojo = 9.5f;
 	personaje->SetPos(x_ojo, 1.0f);
 	personaje->SetAcel(0, -9.81f);	
-	sentidoHombre = true;
+	personaje->Setvida(5);
+	personaje->SetVel(0, 0);
 }
 
 void Mundo::setMapa(int l)
@@ -107,7 +108,7 @@ void Mundo::inicializa()
 	y_ojo = 7.5;
 	z_ojo = 30;
 	ojo.set(9.5, 7.5, 30);
-	
+	sentidoHombre = true;//Se inicializa el hombre mirando hacia la derecha
 	if(EleccionPersonaje==0)
 		personaje = new Pistolero();
 	else if(EleccionPersonaje==1)
