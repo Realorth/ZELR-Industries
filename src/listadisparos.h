@@ -2,7 +2,7 @@
 //#include "disparo.h"
 #include"pared.h"
 #include "disparoespecial.h"
-#define MAX_DISPAROS 10
+#define MAX_DISPAROS 20
 
 class listadisparos
 {
