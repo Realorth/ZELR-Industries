@@ -51,8 +51,8 @@ void Enemigos::dibuja()
 	//glColor3f(1.0f, 0.0f, 0.0f);
 	//glutSolidSphere(1, 20, 20);
 	//gestion de direccion y animacion 
-	if (velocidad.x > 0.01)sprite_enemigo.flip(false, false);
-	if (velocidad.x < -0.01)sprite_enemigo.flip(true, false);
+	if (velocidad.x > 0.01)sprite_enemigo.flip(true, false);
+	if (velocidad.x < -0.01)sprite_enemigo.flip(false, false);
 	if ((velocidad.x < 0.01) && (velocidad.x > -0.01))
 		sprite_enemigo.setState(0);
 	else if (sprite_enemigo.getState() == 0)
