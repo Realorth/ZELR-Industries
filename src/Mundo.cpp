@@ -48,18 +48,21 @@ bool Mundo::CargarNivel()
 		setFin(false);
 		flagMapa = false;
 		Genera();
+		ETSIDI::playMusica("sonidos/Cementerio.wav",true);
 		break;
 	case Mundo::NIEVE:
 		destruirMapa();
 		setFin(false);
 		flagMapa = false;
 		Genera();
+		ETSIDI::playMusica("sonidos/Nieve.wav", true);
 		break;
 	case Mundo::BASICO:
 		destruirMapa();
 		setFin(false);
 		flagMapa = false;
 		Genera();
+		ETSIDI::playMusica("sonidos/Basico.wav", true);
 		break;
 	default:
 		setFin(false);
@@ -224,13 +227,7 @@ void Mundo::mueve()
 		}
 		listaBonus.eliminar(auxbonus);
 	}
-	
-
-	// Muerte del jugador por caida
-	if (Interaccion::muertecaida(*personaje) ==true )
-		caida = true;
-
-
+	//Los disparos se eliminan cuando llegan a una longitud y todavia no ha impactado a ningún enemigo
 	for (int i = 0; i < disparos.getNumero(); i++) {
 		if (disparos[i]->GetLongitud() > 20) {
 			disparos.eliminar(disparos[i]);
@@ -254,8 +251,18 @@ void Mundo::mueve()
 		}
 
 	Interaccion::colision(*personaje, WolfPack.GetLista());
+	// Muerte del jugador por caida
+	if (Interaccion::muertecaida(*personaje) ==true )
+		caida = true;
+	//Muerte del jugador por vida nula
 	if (!personaje->Getvida())
 		impacto = true;
+	//Sonido de GameOver
+	if (flag_Muerte) {
+		ETSIDI::stopMusica();
+		ETSIDI::play("sonidos/GameOver.wav");
+		ETSIDI::playMusica("sonidos/Inicio.wav", true);
+	}
 
 }
 
