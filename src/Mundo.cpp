@@ -30,7 +30,8 @@ void Mundo::destruirMapa() {
 	WolfPack.destruirContenido();
 	x_ojo = 9.5f;
 	personaje->SetPos(x_ojo, 1.0f);
-	personaje->SetAcel(0, -9.81f);													//---------------------
+	personaje->SetAcel(0, -9.81f);	
+	sentidoHombre = true;
 }
 
 void Mundo::setMapa(int l)
