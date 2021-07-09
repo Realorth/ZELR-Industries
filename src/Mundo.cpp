@@ -31,8 +31,9 @@ void Mundo::destruirMapa() {
 	x_ojo = 9.5f;
 	personaje->SetPos(x_ojo, 1.0f);
 	personaje->SetAcel(0, -9.81f);	
-	personaje->Setvida(5);
 	personaje->SetVel(0, 0);
+	if (personaje->Getvida() <= 0)
+		personaje->Setvida(5);
 }
 
 void Mundo::setMapa(int l)
