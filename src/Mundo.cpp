@@ -189,9 +189,9 @@ void Mundo::mueve()
 	WolfPack.mueve(0.025f);
 	WolfPack.MuerteCaida();
 
-	Interaccion::rebote(WolfPack.GetLista(), Suelos.getSuelo());
+	Interaccion::rebote(WolfPack.GetLista(), Suelos.getListaPared());
 	//WolfPack.rebote(Suelos.getSuelo());
-	Interaccion::rebote(WolfPack.GetLista(), Plataformas.getPlataforma());
+	Interaccion::rebote(WolfPack.GetLista(), Plataformas.getListaPared());
 	//WolfPack.rebote(Plataformas.getPlataforma());
 
 	//Interaccion de hombre-llaveFin
@@ -241,8 +241,8 @@ void Mundo::mueve()
 		x_ojo = personaje->GetPos().x;
 
 
-	Interaccion::rebote(*personaje, Suelos.getSuelo());
-	Interaccion::rebote(*personaje, Plataformas.getPlataforma());
+	Interaccion::rebote(*personaje, Suelos.getListaPared());
+	Interaccion::rebote(*personaje, Plataformas.getListaPared());
 	WolfPack.colision(disparos);
 	//Borrar los enemigos con vida 0 y agregar en su lugar una moneda como recompensa
 	for (int i = 0; i < WolfPack.getNumero(); i++) 
@@ -390,15 +390,15 @@ void Mundo::Genera()
 	std::ifstream a;
 	if (ptipo == CEMENTERIO) {
 		a.open("CEMENTERIO_.txt");
-		Fondo.setTextura("imagenes/GRAVEYARD/png/BG.png");
+		Fondo.setFondo("imagenes/GRAVEYARD/png/BG.png");
 	}
 	else if (ptipo == NIEVE) {
 		a.open("NIEVE_.txt");
-		Fondo.setTextura("imagenes/WINTER/png/BG.png");
+		Fondo.setFondo("imagenes/WINTER/png/BG.png");
 	}
 	else if (ptipo == BASICO) {
 		a.open("BASICO_.txt");
-		Fondo.setTextura("imagenes/BASICO/png/BG.png");
+		Fondo.setFondo("imagenes/BASICO/png/BG.png");
 	}
 
 	if (a.is_open()) {
@@ -512,7 +512,7 @@ void Mundo::Genera()
 
 		}
 	Fondo.Genera(length, longitud);
-	llave.SetPos(Suelos.getSuelo().back()->GetLim1().x, 2);
+	llave.SetPos(Suelos.getListaPared().back()->GetLim1().x, 2);
 		
 	}
 
